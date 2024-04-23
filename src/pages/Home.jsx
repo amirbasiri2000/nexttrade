@@ -7,6 +7,9 @@ import MarketPulse from "../components/marketPulse/MarketPulse";
 import AnalystEstimates from "../components/analystEstimates/AnalystEstimates";
 import BecomeAnInstructor from "../components/BecomeAnInstructor";
 import Testimonials from "../components/testimonials/Testimonials";
+import TopCategory from "../components/topCategories/TopCategories";
+import TopCategories from "../components/topCategories/TopCategories";
+import LearnAny from "../components/learnany/LearnAny";
 
 const Home = () => {
   return (
@@ -17,6 +20,8 @@ const Home = () => {
       <PopularCourses />
       <MarketPulse />
       <AnalystEstimates />
+      <LearnAny />
+      <TopCategories />
       <BecomeAnInstructor />
       <Testimonials />
     </div>

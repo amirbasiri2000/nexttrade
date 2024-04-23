@@ -7,17 +7,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
+import SwiperNabButtons from "../../common/SwiperNabButtons";
 
 const AnalystEstimates = () => {
   return (
-    <div className="wrapper mt-16">
+    <div className="mt-32">
       <MainTitle title="Analyst Estimates" />
 
-      <div className="mt-10">
+      <div className="mt-10 px-2 sm:px-10">
         <Swiper
           spaceBetween={10}
-          navigation={true}
-          // centeredSlides={true}
           loop
           autoplay={{
             delay: 2500,
@@ -37,14 +36,15 @@ const AnalystEstimates = () => {
               spaceBetween: 50,
             },
           }}
-          modules={[Navigation]}
-          className="mySwiper space-x-0"
+          modules={[]}
+          className="mySwiper space-x-0 relative"
         >
           {[1, 2, 3, 4].map((item, index) => (
             <SwiperSlide key={index} className="w-full !bg-inherit">
               <EstimateItem />
             </SwiperSlide>
           ))}
+          <SwiperNabButtons />
         </Swiper>
       </div>
     </div>

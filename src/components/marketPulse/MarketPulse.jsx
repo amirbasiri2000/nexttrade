@@ -9,7 +9,7 @@ const MarketPulse = () => {
         <div>
           <MainTitle title="market pulse" />
 
-          <p className="text-[#ffffff99] text-center text-[16px] font-medium shrink-0 leading-7">
+          <p className="text-[#ffffff99] text-start md:text-center text-[12px] sm:text-[16px] font-medium shrink-0 leading-5 md:leading-7">
             Empower your forex trading journey by exploring our comprehensive
             market pulse page. This invaluable resource offers real-time
             insights, expert analyses, and the latest trends crucial for making

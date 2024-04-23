@@ -9,7 +9,7 @@ const BecomeAnInstructor = () => {
             <img src="/assets/img25.png" alt="Become An Instructor" />
           </div>
         </div>
-        <div className="flex-1 pl-12 relative">
+        <div className="flex-1 md:pl-12 relative">
           <div className="pb-4">
             <div className="mb-4">
               <h2 className="text-gold-light_400 text-3xl font-extrabold">

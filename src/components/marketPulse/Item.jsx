@@ -18,7 +18,7 @@ const Item = () => {
               Market-Pulse
             </h4>
           </a>
-          <p className="text-[16px] font-medium leading-7 pb-4">
+          <p className="text-[15px] md:text-[16px] font-medium  md:leading-7 pb-2 md:pb-4">
             Gain insights, boost profiles; visit our Market Pulse page tody.
           </p>
 

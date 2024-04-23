@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import Languages from "../common/Languages";
 
 const Navbar = () => {
+  const [showLanguages, setShowLanguages] = useState(true);
+
   return (
     <div className="w-full wrapper pt-2 lg:pt-2 bg-blue-light">
       <div className="">
@@ -160,7 +163,7 @@ const Navbar = () => {
           {/* __________________ */}
           <div className="hidden lg:flex items-center space-x-6">
             <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white rounded-3xl">
-              <button className="px-6 py-2 text-gray-500">Log In</button>
+              <button className="px-6 py-2 text-gray-600">Log In</button>
             </div>
 
             <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
@@ -191,7 +194,16 @@ const Navbar = () => {
             </div>
 
             <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white text-gold-light_400 px-6 py-2 cursor-pointer">
-              English
+              <div
+                className="flex items-center space-x-2"
+                onClick={() => setShowLanguages(true)}
+              >
+                <img className="w-8 h-7" src="/assets/flags/en.png" alt="En" />
+                <span className="font-semibold">English</span>
+              </div>
+              {showLanguages && (
+                <Languages setShowLanguages={setShowLanguages} />
+              )}
             </div>
           </div>
 

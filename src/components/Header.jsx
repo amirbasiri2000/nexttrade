@@ -42,7 +42,8 @@ const Header = () => {
         // slidesPerView={1}
         slidesPerView="auto"
         spaceBetween={10}
-        loop
+        loop={true}
+        
         speed={12000}
         // noSwipingClass="swiper-slide"
         autoplay={{

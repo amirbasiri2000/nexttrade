@@ -1,6 +1,12 @@
 import React from "react";
 import MainTitle from "../../common/MainTitle";
 import SingleTestimonial from "./SingleTestimonial";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Navigation, Pagination } from "swiper/modules";
+import SwiperNabButtons from "../../common/SwiperNabButtons";
 
 const testimonialData = [
   {
@@ -36,22 +42,54 @@ const testimonialData = [
 
 const Testimonials = () => {
   return (
-    <div className="wrapper mt-20 ">
+    <div className="mt-20 mb-20 px-2 sm:px-6">
       <div>
         <MainTitle title="What Our Users Say About Us" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <Swiper
+        spaceBetween={10}
+        // pagination
+        pagination={{
+          clickable: true,
+        }}
+        // centeredSlides={true}
+        loop
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 40,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 50,
+          },
+        }}
+        modules={[Pagination]}
+        className="mySwiper space-x-0"
+      >
         {testimonialData?.map(({ id, img, description, name, position }) => (
-          <SingleTestimonial
-            key={id}
-            src={img}
-            description={description}
-            name={name}
-            position={position}
-          />
+          <SwiperSlide key={id} className="!bg-inherit w-full mx-auto">
+            <SingleTestimonial
+              key={id}
+              src={img}
+              description={description}
+              name={name}
+              position={position}
+            />
+          </SwiperSlide>
         ))}
-      </div>
+
+        <SwiperNabButtons />
+      </Swiper>
     </div>
   );
 };

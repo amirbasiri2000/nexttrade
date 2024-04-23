@@ -35,8 +35,14 @@ const footerData = [
 
 const Footer = () => {
   return (
-    <footer className="mt-24 border-t border-gold-light_300 pt-16 z-10">
-      <div className="wrapper">
+    <footer className="mt-24 border-t border-gold-light_300 pt-16 z-10 relative">
+      <img
+        className="absolute bottom-[calc(100%-42px)] !z-1"
+        src="/assets/bgicon3.png"
+        alt="background"
+      />
+
+      <div className="wrapper z-10">
         <div className="flex items-center sm:items-start flex-col sm:flex-row space-y-8 sm:space-y-0">
           <div className="flex-[3]">
             <div>
@@ -49,15 +55,15 @@ const Footer = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 pl-12">
               {footerData?.map((data) => (
                 <div key={data.id}>
-                  <div className="mb-16">
-                    <h5 className="mb-8 text-[22px] text-white font-extrabold">
+                  <div className="mb-10 md:mb-16">
+                    <h5 className="mb-4 md:mb-8 text-[22px] text-white font-extrabold">
                       {data.title}
                     </h5>
                     <ul className="text-[16px] ">
                       {data.list?.map((item, index) => (
                         <li
                           key={index}
-                          className="mb-[18px] text-white hover:text-gold-dark_200 transition-colors"
+                          className="mb-[12px] sm:mb-[18px] text-white hover:text-gold-dark_200 transition-colors"
                         >
                           <a className="font-medium " href={item.href}>
                             {item.item}
@@ -70,9 +76,9 @@ const Footer = () => {
               ))}
 
               <div>
-                <div className="mb-16">
-                  <div className="mb-8">
-                    <h5 className="mb-8 text-[22px] text-white font-extrabold">
+                <div className="mb-10 sm:mb-16">
+                  <div className="mb-4 sm:mb-8">
+                    <h5 className="mb-4 sm:mb-8 text-[22px] text-white font-extrabold">
                       Socaial Media
                     </h5>
                     <ul className="text-[16px] flex items-center space-x-2">
@@ -144,14 +150,14 @@ const Footer = () => {
                   </div>
 
                   <div>
-                    <h5 className="mb-4 text-[22px] text-white font-extrabold">
+                    <h5 className="mb-2 sm:mb-4 text-[22px] text-white font-extrabold">
                       Contact Us
                     </h5>
                     <ul className="text-[16px] ">
-                      <li className="cursor-pointer mb-[18px] text-white hover:text-gold-dark_200 transition-colors">
+                      <li className="cursor-pointer mb-[12px] md:mb-[18px] text-white hover:text-gold-dark_200 transition-colors">
                         +13322416277
                       </li>
-                      <li className="cursor-pointer mb-[18px] text-white hover:text-gold-dark_200 transition-colors">
+                      <li className="cursor-pointer mb-[12px] md:mb-[18px] text-white hover:text-gold-dark_200 transition-colors">
                         <b>cs@nexttradeforex.com</b>
                       </li>
                     </ul>
