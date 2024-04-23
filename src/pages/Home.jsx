@@ -5,6 +5,8 @@ import CustomCalendaar from "../components/Calendar/CustomCalendar";
 import PopularCourses from "../components/popularCourses/PopularCourses";
 import MarketPulse from "../components/marketPulse/MarketPulse";
 import AnalystEstimates from "../components/analystEstimates/AnalystEstimates";
+import BecomeAnInstructor from "../components/BecomeAnInstructor";
+import Testimonials from "../components/testimonials/Testimonials";
 
 const Home = () => {
   return (
@@ -15,6 +17,8 @@ const Home = () => {
       <PopularCourses />
       <MarketPulse />
       <AnalystEstimates />
+      <BecomeAnInstructor />
+      <Testimonials />
     </div>
   );
 };

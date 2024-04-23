@@ -11,7 +11,7 @@ function App() {
       <main className="flex-1">
         <Home />
       </main>
-      <div className="mt-[800px]" />
+      <div />
       <Footer />
     </div>
   );

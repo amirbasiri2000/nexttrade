@@ -2,10 +2,14 @@ import React from "react";
 
 const Course = ({ img, alt, title }) => {
   return (
-    <div className="bg-blue-light hover:scale-105 transition rounded-[10px] overflow-hidden h-[400px] p-4 pb-7">
-      <div className="h-[80%] ">
+    <div className="bg-blue-light transition rounded-[10px] overflow-hidden h-[400px] p-4 pb-7">
+      <div className="h-[80%] overflow-hidden">
         <a href="/">
-          <img className="h-full w-full object-cover" src={img} alt={alt} />
+          <img
+            className="h-full w-full hover:scale-105 transition object-cover"
+            src={img}
+            alt={alt}
+          />
         </a>
       </div>
 

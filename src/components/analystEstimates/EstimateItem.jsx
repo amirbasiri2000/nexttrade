@@ -2,7 +2,7 @@ import React from "react";
 
 const EstimateItem = () => {
   return (
-    <div className="border border-[#ffffff80] py-4 px-5 text-[#e9e9e97a] max-h-[380px] rounded-lg">
+    <div className="w-full max-w-[650px] mx-auto border border-[#ffffff80] py-4 px-5 text-[#e9e9e97a] max-h-[380px] rounded-lg">
       <h2 className="font-extrabold text-gold-light_400 uppercase mb-3">
         <a href="/">USD/JPY</a>
       </h2>
