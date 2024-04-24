@@ -1,4 +1,5 @@
 import React from "react";
+import CustomBtnLg from "../../common/CustomBtnLg";
 
 const learnAnyData = [
   {
@@ -67,12 +68,13 @@ const LearnAny = () => {
               </div>
 
               <div className="mt-12 md:mt-16 text-left">
-                <a
+                {/* <a
                   className="py-5 px-10 text-[#020E51] text-[14px] font-semibold bg-gradient-to-t from-[#F0D785] via-[#9C7049] to-[#F0D785] shadow-xl rounded-lg"
                   href="/"
                 >
                   Explore More
-                </a>
+                </a> */}
+                <CustomBtnLg title="Explore More" text="text-sm" />
               </div>
             </div>
           </div>

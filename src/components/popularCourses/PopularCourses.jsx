@@ -1,6 +1,7 @@
 import React from "react";
 import MainTitle from "../../common/MainTitle";
 import Course from "./Course";
+import CustomBtnLg from "../../common/CustomBtnLg";
 
 const data = [
   {
@@ -44,9 +45,7 @@ const PopularCourses = () => {
 
         {/* button */}
         <div className="flex justify-center mt-8">
-          <button className="capitalize  text-blue-dark text-lg font-semibold py-6 px-10 bg-gradient-to-t from-[#F0D785] via-[#9C7049] to-[#F0D785] shadow-xl rounded-lg">
-            View all Courses
-          </button>
+          <CustomBtnLg title="View all Courses" />
         </div>
       </div>
     </div>

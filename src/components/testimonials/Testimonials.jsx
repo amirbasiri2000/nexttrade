@@ -74,7 +74,7 @@ const Testimonials = () => {
           },
         }}
         modules={[Pagination]}
-        className="mySwiper space-x-0"
+        className="mySwiper space-x-0 !z-50"
       >
         {testimonialData?.map(({ id, img, description, name, position }) => (
           <SwiperSlide key={id} className="!bg-inherit w-full mx-auto">

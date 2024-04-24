@@ -2,8 +2,8 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <>
-      <div className="wrapper pt-14 lg:pt-20 bg-blue-light">
+    <div className="relative">
+      <div className="wrapper pt-14 lg:pt-20 pb-[130px] bg-blue-light">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0">
           <div className="flex order-2 lg:order-1 mx-auto text-center md:mx-auto lg:text-left lg:mx-0 flex-col max-w-[520px] md:max-w-[700px] lg:max-w-[520px]">
             <h1 className="text-[35px] md:text-[45px] leading-[43px] md:leading-[54px] font-semibold mb-5 lg:mb-8 text-white">
@@ -52,8 +52,12 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="bg-red-700 w-full h-0 border-b-[100px] border-blue-light rounded-br-[100%] rounded-bl-[100%]"></div>
-    </>
+
+      {/* <div className="w-full h-0 border-b-[100px] border-blue-light rounded-br-[100%] rounded-bl-[100%]"></div> */}
+      <img
+        className="absolute bottom-0 left-0"
+        src="/assets/hero-curve-layer1.svg" alt="background" />
+    </div>
   );
 };
 

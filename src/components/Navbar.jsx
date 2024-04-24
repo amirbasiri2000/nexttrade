@@ -14,12 +14,14 @@ const Navbar = () => {
           </a>
           {/* _________________________ */}
           <div
-            className={`absolute bg-blue-light lg:bg-inherit w-full py-4 lg:py-0 lg:relative top-full flex-col lg:flex-row flex lg:justify-end gap-2 ${
-              showMobileMenu ? "block" : "hidden lg:flex"
+            className={`absolute bg-blue-light lg:bg-inherit w-full py-4 lg:py-0 lg:relative top-full flex-col lg:flex-row flex lg:justify-end gap-2 z-50 h-[calc(100vh-130px)] lg:h-auto ${
+              showMobileMenu
+                ? "translate-x-0 duration-300"
+                : "-translate-x-[110%] lg:translate-x-0 duration-500 lg:flex"
             }`}
           >
             <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 text-[14px] space-x-0 lg:space-x-4">
-              <div className="group inline-block ">
+              <div className="group inline w-full cursor-pointer lg:w-fit">
                 <button className="outline-none focus:outline-none text-white py-1 flex items-center">
                   <span className="pr-1">Home</span>
                   <span>
@@ -34,16 +36,28 @@ const Navbar = () => {
                   </span>
                 </button>
                 <ul
-                  className="bg-gold-light_200 rounded-lg px-6 py-2 transform scale-0 group-hover:scale-100 absolute 
-                transition duration-150 ease-in-out origin-top min-w-32 cursor-pointer"
+                  className="bg-gold-light_200 
+                  rounded-lg px-6 py-2 
+                  transform
+                  
+                  hidden 
+                  group-hover:block
+                  lg:group-hover:block 
+                  lg:scale-0 
+                  lg:group-hover:scale-100 
+                  lg:absolute 
+                  
+                  transition duration-150 ease-in-out origin-top 
+                  lg:w-auto w-3/5 
+                  cursor-pointer"
                 >
                   <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm px-3 py-1 hover:text-white ">
-                    Programming
+                    Who we are
                   </li>
                   <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm px-3 py-1 hover:text-white">
-                    DevOps
+                    Partnership
                   </li>
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm relative px-3 py-1 hover:text-white">
+                  {/* <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm relative px-3 py-1 hover:text-white">
                     <button className="w-full text-left flex items-center outline-none focus:outline-none">
                       <span className="pr-1 flex-1">Langauges</span>
                       <span className="mr-auto">
@@ -58,7 +72,9 @@ const Navbar = () => {
                       </span>
                     </button>
                     <ul
-                      className="bg-gold-light_200 border px-6 py-2 rounded-lg absolute top-0 right-0 
+                      className="bg-gold-light_200 
+                      border px-6 py-2 rounded-lg 
+                      absolute top-0 right-0 
                       transition duration-150 ease-in-out origin-top-left
                       min-w-32
                       "
@@ -76,9 +92,9 @@ const Navbar = () => {
                         Rust
                       </li>
                     </ul>
-                  </li>
+                  </li> */}
                   <li className="text-blue-light border-b border-blue-light  pt-3 px-3 py-1 hover:text-white">
-                    Testing
+                    Contact Us
                   </li>
                 </ul>
               </div>
@@ -91,7 +107,7 @@ const Navbar = () => {
                 <a href="/">Market pulse</a>
               </div>
 
-              <div className="group inline-block ">
+              <div className="group inline-block w-full lg:w-fit">
                 <button className="outline-none focus:outline-none text-white  py-1 flex items-center">
                   <span className="pr-1  ">Tools</span>
                   <span>
@@ -106,18 +122,21 @@ const Navbar = () => {
                   </span>
                 </button>
                 <ul
-                  className="bg-gold-light_200 rounded-lg px-6 py-2 transform scale-0 group-hover:scale-100 absolute 
-                transition duration-150 ease-in-out origin-top min-w-32 cursor-pointer"
+                  className="bg-gold-light_200 rounded-lg px-6 py-2 transform 
+                  hidden 
+                  group-hover:block
+                  lg:group-hover:block 
+                  lg:scale-0 
+                  lg:group-hover:scale-100 
+                  lg:absolute 
+
+                transition duration-150 ease-in-out origin-top 
+                  lg:w-auto w-3/5
+                cursor-pointer"
                 >
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm px-3 py-1 hover:text-white ">
-                    Programming
-                  </li>
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm px-3 py-1 hover:text-white">
-                    DevOps
-                  </li>
                   <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm relative px-3 py-1 hover:text-white">
                     <button className="w-full text-left flex items-center outline-none focus:outline-none">
-                      <span className="pr-1 flex-1">Langauges</span>
+                      <span className="pr-1 flex-1">Education</span>
                       <span className="mr-auto">
                         <svg
                           className="fill-current h-5 w-5
@@ -136,21 +155,109 @@ const Navbar = () => {
                       "
                     >
                       <li className="px-3 py-1 text-blue-light border-b pt-3 border-blue-light hover:text-white ">
-                        Javascript
+                        Algo Trading
                       </li>
                       <li className="text-blue-light border-b pt-3 border-blue-light hover:text-white rounded-sm relative px-3 py-1 ">
-                        Java
+                        Glossary
                       </li>
                       <li className="text-blue-light border-b pt-3 border-blue-light hover:text-white px-3 py-1 ">
-                        Go
+                        Market Status
+                      </li>
+                    </ul>
+                  </li>
+                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm relative px-3 py-1 hover:text-white">
+                    <button className="w-full text-left flex items-center outline-none focus:outline-none">
+                      <span className="pr-1 flex-1">Screeners</span>
+                      <span className="mr-auto">
+                        <svg
+                          className="fill-current h-5 w-5
+                        transition duration-150 ease-in-out"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
+                    </button>
+                    <ul
+                      className="bg-gold-light_200 border px-6 py-2 rounded-lg absolute top-0 right-0 
+                      transition duration-150 ease-in-out origin-top-left
+                      min-w-32
+                      "
+                    >
+                      <li className="px-3 py-1 text-blue-light border-b pt-3 border-blue-light hover:text-white ">
+                        Crypto Screeners
+                      </li>
+                      <li className="text-blue-light border-b pt-3 border-blue-light hover:text-white rounded-sm relative px-3 py-1 ">
+                        Forex Screeners
                       </li>
                       <li className="text-blue-light border-b pt-3 border-blue-light hover:text-white px-3 py-1 ">
-                        Rust
+                        Stock Screener
+                      </li>
+                    </ul>
+                  </li>
+                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm relative px-3 py-1 hover:text-white">
+                    <button className="w-full text-left flex items-center outline-none focus:outline-none">
+                      <span className="pr-1 flex-1">Calculators</span>
+                      <span className="mr-auto">
+                        <svg
+                          className="fill-current h-5 w-5
+                        transition duration-150 ease-in-out"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
+                    </button>
+                    <ul
+                      className="bg-gold-light_200 border px-6 py-2 rounded-lg absolute top-0 right-0 
+                      transition duration-150 ease-in-out origin-top-left
+                      min-w-32
+                      "
+                    >
+                      <li className="px-3 py-1 text-blue-light border-b pt-3 border-blue-light hover:text-white ">
+                        Fibonacci Calculator
+                      </li>
+                      <li className="text-blue-light border-b pt-3 border-blue-light hover:text-white rounded-sm relative px-3 py-1 ">
+                        Pip Calculator
                       </li>
                     </ul>
                   </li>
                   <li className="text-blue-light border-b border-blue-light  pt-3 px-3 py-1 hover:text-white">
-                    Testing
+                    Web Terminal
+                  </li>
+                  <li className="text-blue-light border-b border-blue-light  pt-3 px-3 py-1 hover:text-white">
+                    Market Watch
+                  </li>
+
+                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm relative px-3 py-1 hover:text-white">
+                    <button className="w-full text-left flex items-center outline-none focus:outline-none">
+                      <span className="pr-1 flex-1">Other</span>
+                      <span className="mr-auto">
+                        <svg
+                          className="fill-current h-5 w-5
+                        transition duration-150 ease-in-out"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
+                    </button>
+                    <ul
+                      className="bg-gold-light_200 border px-3 py-2 rounded-lg absolute top-0 right-0 
+                      transition duration-150 ease-in-out origin-top-left
+                      min-w-32
+                      "
+                    >
+                      <li className="px-3 py-1 text-blue-light border-b pt-3 border-blue-light hover:text-white ">
+                        Correlation
+                      </li>
+                      <li className="text-blue-light border-b pt-3 border-blue-light hover:text-white rounded-sm relative px-3 py-1 ">
+                        Forex Volatillity
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import CustomBtnLg from "../common/CustomBtnLg";
 
 const BecomeAnInstructor = () => {
   return (
@@ -12,8 +13,8 @@ const BecomeAnInstructor = () => {
         <div className="flex-1 md:pl-12 relative">
           <div className="pb-4">
             <div className="mb-4">
-              <h2 className="text-gold-light_400 text-3xl font-extrabold">
-                Become <br />
+              <h2 className="text-gold-light_400 text-2xl lg:text-3xl font-extrabold">
+                Become <span className="inline md:block"/>
                 An Instructor
               </h2>
             </div>
@@ -28,8 +29,8 @@ const BecomeAnInstructor = () => {
             </div>
           </div>
 
-          <div className="z-10 relative cursor-pointer rounded-[10px] text-[#020E51] font-semibold text-[16px] py-5 px-10 bg-gradient-to-t from-[#F0D785] via-[#9C7049] to-[#F0D785] shadow-xl w-fit">
-            <a href="/">Start Teaching Today</a>
+          <div className="z-10 relative w-fit">
+            <CustomBtnLg title="Start Teaching Today" text="text-[15px]" />
           </div>
 
           <img
