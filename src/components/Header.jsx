@@ -43,6 +43,7 @@ const Header = () => {
         slidesPerView="auto"
         spaceBetween={10}
         loop={true}
+        centeredSlides={true}
         
         speed={12000}
         // noSwipingClass="swiper-slide"

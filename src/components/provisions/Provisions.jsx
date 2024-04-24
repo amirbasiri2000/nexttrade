@@ -34,8 +34,9 @@ const Provisions = () => {
               </div>
 
               <ul className="mt-4 max-h-[200px] overflow-auto space-y-4 pl-0 list-none">
-                {Array.from(new Array(3).keys()).map((item) => (
+                {Array.from(new Array(3).keys()).map((item,index) => (
                   <PodcastItem
+                    key={index}
                     title="Text Podcast on Forex"
                     date="September 26, 2023 at 11:00 PM"
                   />

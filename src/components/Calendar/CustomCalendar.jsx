@@ -114,7 +114,7 @@ const CustomCalendaar = ({ closingDate }) => {
           <Calendar
             className="!w-full !bg-blue-light"
             activeStartDate={activeStartDate}
-            calendarType="US"
+            calendarType="gregory"
             showNavigation={false}
             onChange={onChange}
             value={value}
