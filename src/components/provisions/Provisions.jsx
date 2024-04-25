@@ -7,7 +7,7 @@ const Provisions = () => {
       <div className="flex flex-col lg:flex-row lg:overflow-auto justify-between items-stretch gap-5">
         {/* ///////////////////////////////////////////// */}
         <div className="flex-1 mb-8 md:mb-16 lg:mb-0">
-          <div className="bg-blue-light py-16 md:py-20 lg:py-24 px-10 rounded-tr-full rounded-br-full">
+          <div className="bg-blue-light py-12 md:py-20 lg:py-24 px-6 lg:px-10 rounded-tr-full rounded-br-full">
             <h3 className="mb-2 md:mb-6 text-xl md:text-3xl lg:text-3xl font-extrabold text-white">
               What we Provide
             </h3>
@@ -38,7 +38,7 @@ const Provisions = () => {
                   <PodcastItem
                     key={index}
                     title="Text Podcast on Forex"
-                    date="September 26, 2023 at 11:00 PM"
+                    date="Sep 26, 2024, 11:00 PM"
                   />
                 ))}
               </ul>

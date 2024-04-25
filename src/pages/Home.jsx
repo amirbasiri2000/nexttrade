@@ -7,9 +7,9 @@ import MarketPulse from "../components/marketPulse/MarketPulse";
 import AnalystEstimates from "../components/analystEstimates/AnalystEstimates";
 import BecomeAnInstructor from "../components/BecomeAnInstructor";
 import Testimonials from "../components/testimonials/Testimonials";
-import TopCategory from "../components/topCategories/TopCategories";
 import TopCategories from "../components/topCategories/TopCategories";
 import LearnAny from "../components/learnany/LearnAny";
+import MoversAndShakers from "../components/moversandshakers/MoversAndShakers";
 
 const Home = () => {
   return (
@@ -19,6 +19,7 @@ const Home = () => {
       <CustomCalendaar />
       <PopularCourses />
       <MarketPulse />
+      <MoversAndShakers />
       <AnalystEstimates />
       <LearnAny />
       <TopCategories />

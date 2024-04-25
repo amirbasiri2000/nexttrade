@@ -2,7 +2,7 @@ import React from "react";
 
 const Item = () => {
   return (
-    <div className="w-[90%] md:w-[94%] lg:w-[70%] xl:w-[60%] mx-auto">
+    <div className="w-[90%] md:w-[94%] lg:w-[70%] xl:w-[60%] mx-auto shadow-xl">
       <div className="relative aspect-auto w-full">
         <div className="z-1 w-full">
           <img
@@ -12,7 +12,7 @@ const Item = () => {
           />
         </div>
 
-        <div className="z-2 w-[90%] sm:w-[60%] md:w-[80%] lg:w-[80%] h-fit absolute top-1/2 -translate-y-[20%] right-[5%] md:-bottom-[10%] md:right-[3%] lg:top-1/2 lg:-translate-y-1/2 lg:left-[50%] bg-blue-light rounded-[20px] p-4 md:p-8 text-[#ffffff80]">
+        <div className="z-2 w-[90%] sm:w-[60%] md:w-[80%] lg:w-[80%] h-fit absolute top-1/2 translate-y-[10%] right-[5%] md:-bottom-[10%] md:right-[3%] lg:top-1/2 lg:-translate-y-1/2 lg:left-[50%] bg-blue-light rounded-[20px] p-4 md:p-8 text-[#ffffff80] shadow-2xl">
           <a href="/">
             <h4 className="text-gold-light_400 text-xl font-bold leading-9">
               Market-Pulse

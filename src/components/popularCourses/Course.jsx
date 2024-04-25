@@ -2,7 +2,7 @@ import React from "react";
 
 const Course = ({ img, alt, title }) => {
   return (
-    <div className="bg-blue-light transition rounded-[10px] overflow-hidden h-[400px] p-4 pb-7">
+    <div className="bg-blue-light transition rounded-[10px] overflow-hidden h-[400px] p-4 pb-4 md:pb-7">
       <div className="h-[80%] overflow-hidden">
         <a href="/">
           <img
@@ -13,8 +13,8 @@ const Course = ({ img, alt, title }) => {
         </a>
       </div>
 
-      <div className="py-5">
-        <h3 className="text-gold-light_400 text-2xl font-semibold">
+      <div className="pt-5 h-[20%] flex items-center">
+        <h3 className="text-gold-light_400 text:xl lg:text-2xl font-semibold">
           <a href="">{title}</a>
         </h3>
       </div>

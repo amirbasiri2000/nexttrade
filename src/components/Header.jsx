@@ -39,37 +39,47 @@ const Header = () => {
   return (
     <>
       <Swiper
-        // slidesPerView={1}
-        slidesPerView="auto"
-        spaceBetween={10}
+        direction="horizontal"
+        slidesPerView={7}
+        simulateTouch={false}
+        effect="slide"
+        // slidesPerView="auto"
+        // spaceBetween={10}
         loop={true}
         // centeredSlides={true}
-        
-        speed={12000}
-        // noSwipingClass="swiper-slide"
         autoplay={{
+          enabled: true,
           delay: 0,
-          disableOnInteraction: true,
-          // pauseOnMouseEnter: false,
+          pauseOnMouseEnter: true,
+          disableOnInteraction: false,
         }}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 5,
-            spaceBetween: 50,
-          },
-        }}
+        centerInsufficientSlides={true}
+        speed={1600}
+        loopAdditionalSlides={false}
+        // noSwipingClass="swiper-slide"
+        // autoplay={{
+        //   delay: 0,
+        //   disableOnInteraction: true,
+        //   // pauseOnMouseEnter: false,
+        // }}
+        // breakpoints={{
+        //   640: {
+        //     slidesPerView: 1,
+        //     spaceBetween: 20,
+        //   },
+        //   768: {
+        //     slidesPerView: 4,
+        //     spaceBetween: 40,
+        //   },
+        //   1024: {
+        //     slidesPerView: 5,
+        //     spaceBetween: 50,
+        //   },
+        // }}
         modules={[Autoplay]}
         className="mySwiper space-x-0"
       >
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
           <SwiperSlide key={index} className="!mr-0 !w-[200px]">
             <Item />
           </SwiperSlide>

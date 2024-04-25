@@ -40,8 +40,8 @@ const LearnAny = () => {
           <div className="flex-1">
             <div className="lg:pl-7">
               <div className="text-left">
-                <h2 className="text-gold-light_400 text-center mb-10 font-extrabold text-3xl">
-                  Learn Anything, Anytime From Anywhere
+                <h2 className="text-gold-light_400 text-center mb-7 lg:mb-10  font-bold lg:font-extrabold text-2xl lg:text-3xl">
+                  Learn Anything, Anytime, From Anywhere
                 </h2>
                 <p className="text-[#e9e9e97a] text-[15px] mb-4">
                   e-learning the new way of learning. You can learn latest
@@ -53,9 +53,9 @@ const LearnAny = () => {
               </div>
 
               <div className="mb-4">
-                <ul className="grid grid-cols-2 gap-6">
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                   {learnAnyData?.map(({ id, title, desc }) => (
-                    <li key={id}>
+                    <li className="shadow-2xl" key={id}>
                       <div className="py-6 px-4 bg-blue-light border border-[#041996] rounded-[10px] text-center">
                         <h5 className="text-[18px] leading-6 font-bold tracking-[0.2px] text-gold-light_400 mb-[6px]">
                           {title}
@@ -67,13 +67,7 @@ const LearnAny = () => {
                 </ul>
               </div>
 
-              <div className="mt-12 md:mt-16 text-left">
-                {/* <a
-                  className="py-5 px-10 text-[#020E51] text-[14px] font-semibold bg-gradient-to-t from-[#F0D785] via-[#9C7049] to-[#F0D785] shadow-xl rounded-lg"
-                  href="/"
-                >
-                  Explore More
-                </a> */}
+              <div className="mt-8 md:mt-16 text-left">
                 <CustomBtnLg title="Explore More" text="text-sm" />
               </div>
             </div>

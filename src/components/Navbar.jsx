@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Languages from "../common/Languages";
+import useClickOutside from "../hooks/useClickOutside";
 
 const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
+  
+
   return (
-    <div className="w-full wrapper pt-2 lg:pt-2 bg-blue-light">
+    <div className="w-full relative wrapper pt-2 lg:pt-2 bg-blue-light">
       <div className="">
-        <div className="flex justify-between items-center relative">
+        <div className="flex items-center justify-between lg:justify-normal relative">
           <a href="/" className="max-w-[150px]">
             <img src="/assets/logo.png" className="w-full" alt="Logo" />
           </a>
@@ -20,7 +23,7 @@ const Navbar = () => {
                 : "-translate-x-[110%] lg:translate-x-0 duration-500 lg:flex"
             }`}
           >
-            <div className="flex flex-col lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 text-[14px] space-x-0 lg:space-x-4">
+            <div className="flex flex-col lg:mx-auto lg:flex-row items-start lg:items-center space-y-4 lg:space-y-0 text-[14px] space-x-0 lg:space-x-4">
               <div className="group inline w-full cursor-pointer lg:w-fit">
                 <button className="outline-none focus:outline-none text-white py-1 flex items-center">
                   <span className="pr-1">Home</span>
@@ -274,14 +277,16 @@ const Navbar = () => {
             </div>
 
             {/* __________________ */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-6 ">
+            <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
               <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white rounded-3xl">
-                <button className="px-6 py-2 text-gray-600">Log In</button>
+                <button className="px-4 w-max text-sm py-2 text-gray-700">
+                  Log In
+                </button>
               </div>
 
               <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
-                <button className="outline-none focus:outline-none px-6 py-2 flex items-center">
-                  <span className="pr-1">Sign Up</span>
+                <button className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max">
+                  <span className=" text-sm">Sign Up</span>
                   <span>
                     <svg
                       className="fill-current h-5 w-5 transform group-hover:-rotate-180
@@ -306,21 +311,18 @@ const Navbar = () => {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white text-gold-light_400 px-6 py-2 cursor-pointer">
+              <div className="">
                 <div
-                  className="flex items-center space-x-2"
+                  className="bg-gradient-to-b from-white via-bg-gray-100 to-white text-gold-light_400 px-2 py-2 cursor-pointer text-center ml-0 flex items-center space-x-1 w-max"
                   onClick={() => setShowLanguages(true)}
                 >
                   <img
-                    className="w-8 h-7"
+                    className="w-6 h-5"
                     src="/assets/flags/en.png"
                     alt="En"
                   />
-                  <span className="font-semibold">English</span>
+                  <span className="font-semibold text-sm">English</span>
                 </div>
-                {showLanguages && (
-                  <Languages setShowLanguages={setShowLanguages} />
-                )}
               </div>
             </div>
           </div>
@@ -347,6 +349,12 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {showLanguages && (
+        <Languages
+          setShowLanguages={setShowLanguages}
+        />
+      )}
     </div>
   );
 };

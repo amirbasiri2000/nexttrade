@@ -2,11 +2,13 @@ import React from "react";
 import MainTitle from "../../common/MainTitle";
 import SingleTestimonial from "./SingleTestimonial";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
+import SwiperNabButtons from "../../common/SwiperNabButtons";
+
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation, Pagination } from "swiper/modules";
-import SwiperNabButtons from "../../common/SwiperNabButtons";
+
 
 const testimonialData = [
   {

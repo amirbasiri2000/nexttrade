@@ -3,7 +3,7 @@ import React from "react";
 const Hero = () => {
   return (
     <div className="relative">
-      <div className="wrapper pt-14 lg:pt-20 pb-[130px] bg-blue-light">
+      <div className="wrapper pt-10 lg:pt-20 pb-[130px] bg-blue-light">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-0">
           <div className="flex order-2 lg:order-1 mx-auto text-center md:mx-auto lg:text-left lg:mx-0 flex-col max-w-[520px] md:max-w-[700px] lg:max-w-[520px]">
             <h1 className="text-[35px] md:text-[45px] leading-[43px] md:leading-[54px] font-semibold mb-5 lg:mb-8 text-white">
@@ -14,9 +14,9 @@ const Hero = () => {
               NextTrade is a platform that will guide you expertly through the
               learning process of trading.
             </p>
-            <div className="bg-white h-[55px] p-1 pl-[14px] relative rounded-xl flex justify-between items-center">
+            <div className="bg-white h-[45px] lg:h-[55px] p-1 pl-[14px] relative rounded-xl flex justify-between items-center">
               <input
-                className="bg-transparent border-none outline-none w-full h-full pr-5"
+                className="bg-transparent border-none outline-none w-full h-full pr-5 placeholder:text-gray-600"
                 type="text"
                 placeholder="Search ..."
               />
@@ -56,7 +56,11 @@ const Hero = () => {
       {/* <div className="w-full h-0 border-b-[100px] border-blue-light rounded-br-[100%] rounded-bl-[100%]"></div> */}
       <img
         className="absolute bottom-0 left-0"
-        src="/assets/hero-curve-layer1.svg" alt="background" />
+        src="/assets/hero-curve-layer1.svg"
+        alt="background"
+      />
+
+      
     </div>
   );
 };
