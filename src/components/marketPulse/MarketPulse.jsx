@@ -4,7 +4,7 @@ import Item from "./Item";
 
 const MarketPulse = () => {
   return (
-    <section className="wrapper mt-16 lg:mt-24">
+    <section className="wrapper mt-20 lg:mt-24">
       <div>
         <div>
           <MainTitle title="market pulse" />
@@ -23,7 +23,7 @@ const MarketPulse = () => {
 
         {/* items */}
         <div className="">
-          <div className="mt-12 grid md:grid-cols-2 gap-y-[10rem] sm:gap-y-14 md:gap-y-24 lg:gap-y-14">
+          <div className="mt-12 grid md:grid-cols-2 gap-y-[10rem] sm:gap-y-14 md:gap-y-32 lg:gap-y-14">
             <Item />
             <Item />
             <Item />

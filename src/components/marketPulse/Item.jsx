@@ -12,7 +12,7 @@ const Item = () => {
           />
         </div>
 
-        <div className="z-2 w-[90%] sm:w-[60%] md:w-[80%] lg:w-[80%] h-fit absolute top-1/2 translate-y-[10%] right-[5%] md:-bottom-[10%] md:right-[3%] lg:top-1/2 lg:-translate-y-1/2 lg:left-[50%] bg-blue-light rounded-[20px] p-4 md:p-8 text-[#ffffff80] shadow-2xl">
+        <div className="z-2 w-[90%] sm:w-[60%] md:w-[80%] lg:w-[80%] h-fit absolute top-1/2 translate-y-[10%] right-[5%] md:top-[40%] md:-bottom-[7%] md:right-[10%] lg:top-1/2 lg:-translate-y-1/2 lg:left-[50%] bg-blue-light rounded-[20px] p-4 md:p-8 text-[#ffffff80] shadow-2xl">
           <a href="/">
             <h4 className="text-gold-light_400 text-xl font-bold leading-9">
               Market-Pulse
