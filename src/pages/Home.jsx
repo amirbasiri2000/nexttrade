@@ -10,10 +10,12 @@ import Testimonials from "../components/testimonials/Testimonials";
 import TopCategories from "../components/topCategories/TopCategories";
 import LearnAny from "../components/learnany/LearnAny";
 import MoversAndShakers from "../components/moversandshakers/MoversAndShakers";
+import BodyFixedModal from "../common/BodyFixedModal";
 
 const Home = () => {
   return (
     <div className="max-w-[1500px]">
+      <BodyFixedModal />
       <Hero />
       <Provisions />
       <CustomCalendaar />

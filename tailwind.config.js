@@ -20,9 +20,28 @@ module.exports = {
           light: "#09165a",
         },
       },
+
+      keyframes: {
+        glowing: {
+          "0%": {
+            backgroundColor: "#bb914a",
+            boxShadow: "0 0 3px #bb914a",
+          },
+          "50%": {
+            backgroundColor: "#bb914a",
+            boxShadow: "0 0 15px #bb914a",
+          },
+          "100%": {
+            backgroundColor: "#bb914a",
+            boxShadow: "0 0 1px #bb914a",
+          },
+        },
+      },
+
+      animation: {
+        glowing: "glowing 2s ease-in-out infinite",
+      },
     },
   },
   plugins: [],
 };
-
-
