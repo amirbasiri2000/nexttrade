@@ -55,7 +55,7 @@ const Header = () => {
         }}
         centerInsufficientSlides={true}
         speed={1600}
-        loopAdditionalSlides={false}
+        loopAdditionalSlides={true}
         // noSwipingClass="swiper-slide"
         // autoplay={{
         //   delay: 0,

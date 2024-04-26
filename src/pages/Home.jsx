@@ -14,7 +14,7 @@ import BodyFixedModal from "../common/BodyFixedModal";
 
 const Home = () => {
   return (
-    <div className="max-w-[1500px]">
+    <div className="max-w-[1500px] mx-auto">
       <BodyFixedModal />
       <Hero />
       <Provisions />

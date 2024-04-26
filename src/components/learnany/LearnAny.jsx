@@ -26,7 +26,7 @@ const learnAnyData = [
 
 const LearnAny = () => {
   return (
-    <div className="wrapper pt-20 pb-10">
+    <div className="wrapper mt-16 md:mt-16 lg:mt-20 pt-20 pb-10">
       <div>
         <div className="flex flex-col lg:flex-row">
           <div className="flex-1 mb-16 lg:mb-0">
