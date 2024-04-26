@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="bg-blue-dark flex flex-col min-h-screen  overflow-x-hidden ">
-      <div className="max-w-[1500px] mx-auto">
+    <div className="bg-blue-dark  ">
+      <div className="max-w-[1500px] mx-auto flex flex-col min-h-screen  overflow-x-hidden">
         <Header />
         <Navbar />
         <main className="flex-1">
