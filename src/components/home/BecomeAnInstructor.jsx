@@ -1,5 +1,5 @@
 import React from "react";
-import CustomBtnLg from "../common/CustomBtnLg";
+import CustomBtnLg from "../../common/CustomBtnLg";
 
 const BecomeAnInstructor = () => {
   return (

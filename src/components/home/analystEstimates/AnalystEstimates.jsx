@@ -1,5 +1,5 @@
 import React from "react";
-import MainTitle from "../../common/MainTitle";
+import MainTitle from "../../../common/MainTitle";
 import EstimateItem from "./EstimateItem";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
-import SwiperNabButtons from "../../common/SwiperNabButtons";
+import SwiperNabButtons from "../../../common/SwiperNabButtons";
 
 const AnalystEstimates = () => {
   return (

@@ -1,12 +1,11 @@
 
-import MainTitle from "../../common/MainTitle";
+import MainTitle from "../../../common/MainTitle";
 import SingleMover from "./MoverItem";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
-import SwiperNabButtons from "../../common/SwiperNabButtons";
 
 const MoversAndShakers = () => {
   return (

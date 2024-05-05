@@ -1,6 +1,6 @@
 import React from "react";
 import SingleCategory from "./SingleCategory";
-import MainTitle from "../../common/MainTitle";
+import MainTitle from "../../../common/MainTitle";
 
 const TopCategories = () => {
   return (

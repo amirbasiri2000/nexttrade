@@ -1,5 +1,5 @@
 import React from "react";
-import MainTitle from "../../common/MainTitle";
+import MainTitle from "../../../common/MainTitle";
 import Item from "./Item";
 
 const MarketPulse = () => {

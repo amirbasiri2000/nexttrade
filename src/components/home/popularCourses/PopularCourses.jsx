@@ -1,7 +1,7 @@
 import React from "react";
-import MainTitle from "../../common/MainTitle";
+import MainTitle from "../../../common/MainTitle";
 import Course from "./Course";
-import CustomBtnLg from "../../common/CustomBtnLg";
+import CustomBtnLg from "../../../common/CustomBtnLg";
 
 const data = [
   {
