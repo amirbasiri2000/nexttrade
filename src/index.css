@@ -13,6 +13,10 @@
   .social_icon {
     @apply bg-gold-light_400 w-6 h-6 aspect-square rounded-[3px] py-[1px];
   }
+
+  .formInputText {
+    @apply bg-transparent border border-gray-400 px-2 py-3 rounded-lg w-full outline-none placeholder:text-gray-500 placeholder:text-sm text-sm;
+  }
 }
 
 body {
@@ -25,7 +29,6 @@ body {
   color: #fff !important;
   font-size: 18px !important;
 }
-
 
 /*  */
 

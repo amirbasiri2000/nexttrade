@@ -13,17 +13,17 @@ const Login = () => {
           <MainBannerTitle title="Login" subRoute={subRoute} />
         </HeroTemp>
       </div>
-      <div className="my-20 flex justify-center">
-        <div className="bg-blue-light w-[510px] rounded-2xl p-5 shadow-2xl">
+      <div className="my-10 md:my-16 lg:my-20 flex justify-center wrapper">
+        <div className="bg-blue-light z-50 w-full sm:w-[510px] rounded-2xl p-5 shadow-2xl">
           <form className="flex flex-col items-start gap-7">
             <input
-              className="bg-transparent border border-gray-400 px-2 py-3 rounded-lg w-full outline-none placeholder:text-gray-500 placeholder:text-sm text-sm"
+              className="formInputText"
               type="text"
               placeholder="Username, Mobile, or Email *"
             />
 
             <input
-              className="bg-transparent border border-gray-400 px-2 py-3 rounded-lg w-full outline-none placeholder:text-gray-500 placeholder:text-sm text-sm"
+              className="formInputText"
               type="password"
               placeholder="Password"
             />

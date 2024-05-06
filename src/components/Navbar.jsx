@@ -6,10 +6,8 @@ const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  
-
   return (
-    <div className="w-full relative wrapper pt-2 lg:pt-2 bg-blue-light">
+    <div className="w-full z-[1000] relative wrapper pt-2 lg:pt-2 bg-blue-light">
       <div className="">
         <div className="flex items-center justify-between lg:justify-normal relative">
           <a href="/" className="max-w-[150px]">
@@ -17,7 +15,7 @@ const Navbar = () => {
           </a>
           {/* _________________________ */}
           <div
-            className={`absolute bg-blue-light lg:bg-inherit w-full py-4 lg:py-0 lg:relative top-full flex-col lg:flex-row flex lg:justify-end gap-2 z-50 h-[calc(100vh-130px)] lg:h-auto ${
+            className={`absolute bg-blue-light pl-8 pr-4 lg:bg-inherit w-full py-4 lg:py-0 lg:relative top-full flex-col lg:flex-row flex lg:justify-end gap-2 z-50 h-[calc(100vh-130px)] lg:h-auto ${
               showMobileMenu
                 ? "translate-x-0 duration-300"
                 : "-translate-x-[110%] lg:translate-x-0 duration-500 lg:flex"
@@ -278,14 +276,20 @@ const Navbar = () => {
 
             {/* __________________ */}
             <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
-              <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white rounded-3xl">
-                <button className="px-4 w-max text-sm py-2 text-gray-700">
+              <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white  py-2 rounded-3xl">
+                <a
+                  href="/login"
+                  className="px-4 w-max text-sm  text-gray-700 font-semibold"
+                >
                   Log In
-                </button>
+                </a>
               </div>
 
               <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
-                <button className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max">
+                <a
+                  href="/register"
+                  className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max"
+                >
                   <span className=" text-sm">Sign Up</span>
                   <span>
                     <svg
@@ -297,7 +301,7 @@ const Navbar = () => {
                       <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                     </svg>
                   </span>
-                </button>
+                </a>
                 <ul
                   className="bg-gold-light_200 rounded-lg px-4 py-2 transform scale-0 group-hover:scale-100 absolute top-full -left-3 mt-1
                 transition duration-150 ease-in-out origin-top text-[14px] cursor-pointer w-max"
@@ -350,11 +354,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {showLanguages && (
-        <Languages
-          setShowLanguages={setShowLanguages}
-        />
-      )}
+      {showLanguages && <Languages setShowLanguages={setShowLanguages} />}
     </div>
   );
 };

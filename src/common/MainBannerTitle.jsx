@@ -12,13 +12,13 @@ const MainBannerTitle = ({ title, subRoute }) => {
             {subRoutes.map((route, index) => {
               if (subRoutes.length !== index + 1) {
                 return (
-                  <li className="text-gold-light_400">
+                  <li key={index} className="text-gold-light_400">
                     <a href="/">{route}</a>
                   </li>
                 );
               } else {
                 return (
-                  <li className="text-[#6c757d] capitalize">
+                  <li key={index} className="text-[#6c757d] capitalize">
                     <span className="mr-2">/</span>
                     <a href="/">{route}</a>
                   </li>
