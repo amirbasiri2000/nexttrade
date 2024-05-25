@@ -40,7 +40,7 @@ const Login = () => {
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-      console.log(values);
+     
       dispatch(loginAction({ values }));
     },
   });
