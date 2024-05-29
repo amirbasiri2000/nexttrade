@@ -1,10 +1,18 @@
 import React, { useRef, useState } from "react";
 import Languages from "../common/Languages";
 import useClickOutside from "../hooks/useClickOutside";
+import { deleteCookie, getCookie } from "../utils/cookie";
 
 const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+
+  let userData = getCookie("loginToken");
+  if (userData) {
+    userData = JSON.parse(userData);
+  } else {
+    userData = null;
+  }
 
   return (
     <div className="w-full z-[1000] relative wrapper pt-2 lg:pt-2 bg-blue-light">
@@ -275,45 +283,61 @@ const Navbar = () => {
             </div>
 
             {/* __________________ */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
-              <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white  py-2 rounded-3xl">
-                <a
-                  href="/login"
-                  className="px-4 w-max text-sm  text-gray-700 font-semibold"
-                >
-                  Log In
-                </a>
-              </div>
 
-              <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
-                <a
-                  href="/register"
-                  className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max"
+            <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
+              {userData?.messageData ? (
+                <div
+                  onClick={() => deleteCookie("userData")}
+                  className="bg-gradient-to-b from-white via-bg-gray-100 to-white  py-2 rounded-3xl"
                 >
-                  <span className=" text-sm">Sign Up</span>
-                  <span>
-                    <svg
-                      className="fill-current h-5 w-5 transform group-hover:-rotate-180
-                        transition duration-150 ease-in-out"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+                  <a
+                    href="/login"
+                    className="px-4 w-max text-sm  text-gray-700 font-semibold"
+                  >
+                    Log out
+                  </a>
+                </div>
+              ) : (
+                <>
+                  <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white  py-2 rounded-3xl">
+                    <a
+                      href="/login"
+                      className="px-4 w-max text-sm  text-gray-700 font-semibold"
                     >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </span>
-                </a>
-                <ul
-                  className="bg-gold-light_200 rounded-lg px-4 py-2 transform scale-0 group-hover:scale-100 absolute top-full -left-3 mt-1
+                      Log In
+                    </a>
+                  </div>
+                  <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
+                    <a
+                      href="/register"
+                      className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max"
+                    >
+                      <span className=" text-sm">Sign Up</span>
+                      <span>
+                        <svg
+                          className="fill-current h-5 w-5 transform group-hover:-rotate-180
+                        transition duration-150 ease-in-out"
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                        </svg>
+                      </span>
+                    </a>
+                    <ul
+                      className="bg-gold-light_200 rounded-lg px-4 py-2 transform scale-0 group-hover:scale-100 absolute top-full -left-3 mt-1
                 transition duration-150 ease-in-out origin-top text-[14px] cursor-pointer w-max"
-                >
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm py-1 hover:text-white ">
-                    Join as STUDENT
-                  </li>
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm  py-2 hover:text-white">
-                    Join as INSTRUCTOR
-                  </li>
-                </ul>
-              </div>
+                    >
+                      <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm py-1 hover:text-white ">
+                        Join as STUDENT
+                      </li>
+                      <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm  py-2 hover:text-white">
+                        Join as INSTRUCTOR
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              )}
 
               <div className="">
                 <div

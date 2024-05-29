@@ -20,7 +20,7 @@ const MainBannerTitle = ({ title, subRoute }) => {
                 return (
                   <li key={index} className="text-[#6c757d] capitalize">
                     <span className="mr-2">/</span>
-                    <a href="/">{route}</a>
+                    <a href="/" className="cursor-text">{route}</a>
                   </li>
                 );
               }

@@ -7,21 +7,25 @@ import { loginAction } from "../../redux/features/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCookie, setCookie } from "../../utils/cookie";
+import { userDataAction } from "../../redux/features/userDataSlice";
 import CustomCircleLoader from "../../utils/loaders/CustomCircleLoader";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 
 const Login = () => {
   const params = useParams();
   const subRoute = params["*"];
 
   const navigate = useNavigate();
+  const axiosPrivate = useAxiosPrivate();
 
   // redux
   const dispatch = useDispatch();
-  const { userData, isLoading } = useSelector((state) => state.user);
+  const { userData, isLoading } = useSelector((state) => state.login);
 
   useEffect(() => {
     if (userData?.messageCode === 200) {
-      setCookie("userData", userData, 10);
+      dispatch(userDataAction({ axiosPrivate }));
+      setCookie("loginToken", userData, 10);
       navigate("/");
     }
     console.log(userData);
@@ -40,14 +44,14 @@ const Login = () => {
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-     
       dispatch(loginAction({ values }));
     },
   });
   return (
     <>
       {isLoading && (
-        <div className="w-full h-screen bg-black opacity-30 fixed inset-0 z-[1001] flex justify-center items-center">
+        <div className="w-full h-screen fixed inset-0 z-[1001] flex justify-center items-center">
+          <div className="w-full h-full absolute bg-black opacity-65"></div>
           <div className="z-[1002]">
             <CustomCircleLoader />
           </div>

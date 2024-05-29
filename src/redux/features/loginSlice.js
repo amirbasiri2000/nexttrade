@@ -1,11 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
-const headers = {
-  Accept: "application/json",
-  "Content-Type": "application/json",
-  Authorization: "Basic eWFzYTprYXNoaQ==",
-};
+import { axiosInstance } from "../../axios/axiosInstance";
 
 export const loginAction = createAsyncThunk(
   "login/loginAction",
@@ -18,21 +13,30 @@ export const loginAction = createAsyncThunk(
       password: values.password,
     });
 
-    const config = {
-      method: "post",
-      maxBodyLength: Infinity,
-      url: "http://178.239.151.7:8095/api/gettoken",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Basic ${authToken}`,
-      },
-      data: data,
-    };
+    // const config = {
+    //   method: "post",
+    //   maxBodyLength: Infinity,
+    //   url: "http://178.239.151.7:8095/api/gettoken",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //     Authorization: `Basic ${authToken}`,
+    //   },
+    //   data: data,
+    // };
 
     try {
-      const response = await axios.request(config);
-      console.log(response);
+      // const response = await axios.request(config);
+      // console.log(response);
+      // return response.data;
+
+      const response = await axiosInstance.post("/api/gettoken", data, {
+        headers: {
+          Authorization: `Basic ${authToken}`,
+        },
+      });
+
+      console.log({ response });
       return response.data;
     } catch (error) {
       console.log("login error", error);

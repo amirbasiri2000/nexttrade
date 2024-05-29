@@ -6,6 +6,7 @@ import Hero from "./components/home/Hero";
 import { Home, Login, Register } from "./pages";
 
 import { Routes, Route } from "react-router-dom";
+import AdminPage from "./pages/admin/AdminPage";
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </main>
         <div />
-        <Footer />
+        
       </div>
     </div>
   );
