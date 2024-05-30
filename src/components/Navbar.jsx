@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Languages from "../common/Languages";
 import useClickOutside from "../hooks/useClickOutside";
 import { deleteCookie, getCookie } from "../utils/cookie";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
@@ -276,7 +277,7 @@ const Navbar = () => {
               </div>
 
               <div className="text-white capitalize">
-                <a href="/">Traders Community</a>
+                <Link to="/community">Traders Community</Link>
               </div>
 
               {/* ************* */}

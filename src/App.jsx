@@ -1,12 +1,14 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import HeroTemp from "./components/HeroTemp";
-import Navbar from "./components/Navbar";
-import Hero from "./components/home/Hero";
-import { Home, Login, Register } from "./pages";
-
 import { Routes, Route } from "react-router-dom";
 import AdminPage from "./pages/admin/AdminPage";
+
+import {
+  CommunityGroup,
+  CommunityGroups,
+  Home,
+  Login,
+  Register,
+  TradersCommunity,
+} from "./pages";
 
 function App() {
   return (
@@ -21,10 +23,15 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/community" element={<TradersCommunity />} />
+            <Route path="/community/groups" element={<CommunityGroups />} />
+            <Route
+              path="/community/groups/:name"
+              element={<CommunityGroup />}
+            />
           </Routes>
         </main>
         <div />
-        
       </div>
     </div>
   );
