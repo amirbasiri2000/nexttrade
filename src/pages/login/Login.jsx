@@ -58,13 +58,13 @@ const Login = () => {
         </div>
       )}
 
-      <div className="text-white">
+      <div className="text-white bg-blue-dark">
         <div>
           <HeroTemp>
             <MainBannerTitle title="Login" subRoute={subRoute} />
           </HeroTemp>
         </div>
-        <div className="my-10 md:my-16 lg:my-20 flex justify-center wrapper">
+        <div className="mt-10 pb-20 md:mt-16 lg:mt-20 flex justify-center wrapper">
           <div className="bg-blue-light z-50 w-full sm:w-[510px] rounded-2xl p-5 shadow-2xl">
             <form
               onSubmit={formik.handleSubmit}
@@ -110,7 +110,7 @@ const Login = () => {
               </button>
             </form>
 
-            <div className="mt-20 mb-4 text-gold-light_400 flex justify-between items-center text-sm">
+            <div className="mt-20 pb-4 text-gold-light_400 flex justify-between items-center text-sm">
               <a href="/register">Create account</a>
               <a href="/reset-password">Forgot Password?</a>
             </div>

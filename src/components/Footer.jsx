@@ -35,7 +35,7 @@ const footerData = [
 
 const Footer = () => {
   return (
-    <footer className="mt-24 border-t border-gold-light_300 pt-16 z-10 relative">
+    <footer className="mt-24 border-t bg-blue-dark border-gold-light_300 pt-16 z-10 relative">
       <img
         className="absolute bottom-[calc(100%-42px)] !z-1"
         src="/assets/bgicon3.png"

@@ -129,14 +129,14 @@ const Register = () => {
         </div>
       )}
 
-      <div className="text-white">
+      <div className="text-white bg-blue-dark">
         <div>
           <HeroTemp>
             <MainBannerTitle title="Register" subRoute={subRoute} />
           </HeroTemp>
         </div>
 
-        <div className="my-16 wrapper flex justify-center ">
+        <div className="mt-16 pb-20 wrapper flex justify-center ">
           <div className="bg-blue-light w-full sm:w-[510px] z-[50] rounded-2xl p-5 shadow-2xl">
             <form onSubmit={formik.handleSubmit}>
               <div className="flex flex-col space-y-4">

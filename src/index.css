@@ -21,6 +21,10 @@
   .btnGradiant {
     @apply bg-gradient-to-t from-[#F0D785] via-[#9C7049] to-[#F0D785] shadow-xl;
   }
+
+  .label {
+    @apply text-base font-medium my-1  text-gray-800;
+  }
 }
 
 body {

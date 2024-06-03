@@ -8,8 +8,32 @@ import { CiStar, CiFaceSmile } from "react-icons/ci";
 import { MdReply } from "react-icons/md";
 import Message from "./Message";
 import { RiAttachment2 } from "react-icons/ri";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { sendMsgAction } from "../../../redux/features/messages/sendMsgSlice";
 
 const CommunityGroup = () => {
+  const [userMsg, setUserMsg] = useState("");
+
+  const dispatch = useDispatch();
+  const axiosPrivate = useAxiosPrivate();
+
+  const sendMsgHandler = () => {
+    dispatch(
+      sendMsgAction({
+        axiosPrivate,
+        data: {
+          parentId: null,
+          categoryid: 1,
+          subcategoryid: 2,
+          subcategorygroupid: 2,
+          title: "title",
+          messagebody: userMsg,
+        },
+      })
+    );
+  };
   return (
     <div className="bg-link-water w-full min-h-screen h-full">
       <div className="w-full">
@@ -108,7 +132,7 @@ const CommunityGroup = () => {
                                     {/* user message */}
                                     <div className="w-full">
                                       <div
-                                        ariaLabel="Wednesday, May 29, 2024"
+                                        aria-label="Wednesday, May 29, 2024"
                                         className="bg-black cursor-default rounded-sm py-[3px] px-[7px] opacity-85 inline-block text-xs mx-auto my-3 text-white"
                                       >
                                         May 29
@@ -202,7 +226,7 @@ const CommunityGroup = () => {
                                     {/*  */}
                                     <div className="w-full">
                                       <div
-                                        ariaLabel="Wednesday, May 29, 2024"
+                                        aria-label="Wednesday, May 29, 2024"
                                         className="bg-black cursor-default rounded-sm py-[3px] px-[7px] opacity-85 inline-block text-xs mx-auto my-3 text-white"
                                       >
                                         May 29
@@ -306,6 +330,9 @@ const CommunityGroup = () => {
                               </div>
                               <div className="relative w-full  max-h-[150px] overflow-y-auto overflow-x-hidden min-h-[24px]">
                                 <input
+                                  name="userMsg"
+                                  value={userMsg}
+                                  onChange={(e) => setUserMsg(e.target.value)}
                                   className="w-full h-full border-none outline-none py-3 pl-4 pr-0 outline-offset-0"
                                   type="text"
                                   placeholder="Write your message ..."
@@ -317,7 +344,10 @@ const CommunityGroup = () => {
                                   size={24}
                                 />
                               </div>
-                              <div className="pr-6 pl-3 cursor-pointer drop-shadow-xl">
+                              <div
+                                onClick={sendMsgHandler}
+                                className="pr-6 pl-3 cursor-pointer drop-shadow-xl"
+                              >
                                 <IoIosSend
                                   className="text-blue-main "
                                   size={28}

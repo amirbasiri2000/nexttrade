@@ -4,6 +4,7 @@ const TradersCommunity = () => {
   return (
     <div>
       <CummunityNavbar />
+      
     </div>
   );
 };

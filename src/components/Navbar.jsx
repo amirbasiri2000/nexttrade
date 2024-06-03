@@ -277,7 +277,7 @@ const Navbar = () => {
               </div>
 
               <div className="text-white capitalize">
-                <Link to="/community">Traders Community</Link>
+                <Link to="/traders-community">Traders Community</Link>
               </div>
 
               {/* ************* */}
