@@ -16,23 +16,9 @@ import CustomBtnLg from "../../common/CustomBtnLg";
 import { GoogleLogin } from "react-google-login";
 import GoogleLoginComponent from "./GoogleRegister";
 
-
 const Register = () => {
   const params = useParams();
   const subRoute = params["*"];
-
-  // 
-  const onSuccess = (response) => {
-    const {
-      tokenId,
-      profileObj: { email },
-    } = response;
-    dispatch(googleRegisterAction({ token: tokenId, email }));
-  };
-
-  const onFailure = (response) => {
-    console.log("Login Failed:", response);
-  };
 
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
@@ -44,13 +30,6 @@ const Register = () => {
   const { userData, isLoading, messageCode } = useSelector(
     (state) => state.auth
   );
-
-  // useEffect(() => {
-  //   if (messageCode === 200) {
-  //     navigate("/login");
-  //   }
-  //   console.log(userData);
-  // }, [userData]);
 
   // formik
   const registerValidation = Yup.object({
@@ -84,6 +63,7 @@ const Register = () => {
     confirm_password: Yup.string()
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"),
+    userTypeId: Yup.string().required("Choose your role."),
   });
 
   const formik = useFormik({
@@ -110,6 +90,7 @@ const Register = () => {
       telephone: null,
       postalcode: null,
       legalnationalcode: null,
+      userTypeId: "4",
     },
     validationSchema: registerValidation,
     onSubmit: (values) => {
@@ -340,6 +321,46 @@ const Register = () => {
                     <InputError title={formik.errors.referral_code} />
                   ) : null}
                 </label>
+                <div className="flex flex-col gap-2">
+                  <span className="text-gray-400 text-sm pb-2">
+                    Register as :
+                  </span>
+                  <div className="flex items-center gap-4 w-full">
+                    <label
+                      htmlFor="student"
+                      className="flex items-center justify-center w-[120px] gap-1 border border-gray-400 px-2 py-3 rounded-lg cursor-pointer text-gray-400"
+                    >
+                      <input
+                        name="userTypeId"
+                        id="student"
+                        checked={formik.values.userTypeId == 4}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value="4"
+                        type="radio"
+                      />
+                      Student
+                    </label>
+                    <label
+                      htmlFor="master"
+                      className="flex items-center justify-center w-[120px] gap-1 border border-gray-400 px-2 py-3 rounded-lg cursor-pointer text-gray-400"
+                    >
+                      <input
+                        name="userTypeId"
+                        id="master"
+                        checked={formik.values.userTypeId == 3}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value="3"
+                        type="radio"
+                      />
+                      Master
+                    </label>
+                  </div>
+                  {formik.touched.userTypeId && formik.errors.userTypeId ? (
+                    <InputError title={formik.errors.userTypeId} />
+                  ) : null}
+                </div>
               </div>
               <button
                 className="outline-none  mt-8 bg-gradient-to-t from-[#F0D785] via-[#9C7049] to-[#F0D785] shadow-md rounded-full px-8 py-2 text-blue-dark font-semibold uppercase hover:shadow-none transition-all shadow-gold-light_400"
@@ -361,7 +382,6 @@ const Register = () => {
             </div>
           </div>
         </div>
-
       </div>
 
       {messageCode === 200 && (

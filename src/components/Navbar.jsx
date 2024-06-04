@@ -2,18 +2,33 @@ import React, { useRef, useState } from "react";
 import Languages from "../common/Languages";
 import useClickOutside from "../hooks/useClickOutside";
 import { deleteCookie, getCookie } from "../utils/cookie";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FaCheck } from "react-icons/fa6";
+import { CiUser } from "react-icons/ci";
+import { LuUsers } from "react-icons/lu";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useEffect } from "react";
+import { userDataAction } from "../redux/features/userDataSlice";
 
 const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showProfileDropDown, setShowProfileDropDown] = useState(false);
 
+ 
   let userData = getCookie("loginToken");
-  if (userData) {
-    userData = JSON.parse(userData);
-  } else {
-    userData = null;
-  }
+
+
+
+  const navigate = useNavigate();
+
+  const logOutHandler = () => {
+    deleteCookie("loginToken");
+
+    navigate("/");
+  };
 
   return (
     <div className="w-full z-[1000] relative wrapper pt-2 lg:pt-2 bg-blue-light">
@@ -286,17 +301,54 @@ const Navbar = () => {
             {/* __________________ */}
 
             <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
-              {userData?.messageData ? (
-                <div
-                  onClick={() => deleteCookie("userData")}
-                  className="bg-gradient-to-b from-white via-bg-gray-100 to-white  py-2 rounded-3xl"
-                >
-                  <a
-                    href="/login"
-                    className="px-4 w-max text-sm  text-gray-700 font-semibold"
-                  >
-                    Log out
-                  </a>
+              {userData ? (
+                <div>
+                  <div className="relative">
+                    <div
+                      onClick={() =>
+                        setShowProfileDropDown(!showProfileDropDown)
+                      }
+                      className="flex items-center cursor-pointer"
+                    >
+                      <div className="relative size-[40px] rounded-full">
+                        <img
+                          className="w-full h-full rounded-full border-2 p-[1px]"
+                          src="/assets/bp-avatar.png"
+                          alt="User"
+                        />
+                        <span className="text-white absolute -top-1 right-0">
+                          <FaCheck
+                            className="bg-green-500 rounded-full p-[2px]"
+                            size={20}
+                          />
+                        </span>
+                      </div>
+                      <span className="capitalize text-white ml-2 font-semibold">
+                        Amir Basiri
+                      </span>
+                    </div>
+
+                    <div className="absolute top-[124%] z-[1000] left-1/2 -translate-x-1/2">
+                      {showProfileDropDown && (
+                        <div className="bg-white rounded-lg shadow-lg">
+                          <ul className=" text-gray-500 font-semibold text-sm">
+                            <li className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg border-b border-gray-300 ">
+                              <CiUser size={20} />
+                              <Link to="/user-profile">Profile</Link>
+                            </li>
+
+                            <li
+                              onClick={logOutHandler}
+                              className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg w-max"
+                            >
+                              <RiLogoutCircleLine size={20} />
+                              <Link to="">Log Out</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <>
@@ -313,29 +365,8 @@ const Navbar = () => {
                       href="/register"
                       className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max"
                     >
-                      <span className=" text-sm">Sign Up</span>
-                      <span>
-                        <svg
-                          className="fill-current h-5 w-5 transform group-hover:-rotate-180
-                        transition duration-150 ease-in-out"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                        </svg>
-                      </span>
+                      Sign Up
                     </a>
-                    <ul
-                      className="bg-gold-light_200 rounded-lg px-4 py-2 transform scale-0 group-hover:scale-100 absolute top-full -left-3 mt-1
-                transition duration-150 ease-in-out origin-top text-[14px] cursor-pointer w-max"
-                    >
-                      <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm py-1 hover:text-white ">
-                        Join as STUDENT
-                      </li>
-                      <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm  py-2 hover:text-white">
-                        Join as INSTRUCTOR
-                      </li>
-                    </ul>
                   </div>
                 </>
               )}

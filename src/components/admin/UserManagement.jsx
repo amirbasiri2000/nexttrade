@@ -19,15 +19,15 @@ const UserManagement = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen p-4">
+    <div className="w-full min-h-screen p-4 bg-blue-dark">
       <div className="mt-10 w-full">
-        <div className="bg-blue-light p-4 rounded-lg shadow-lg text-white">
+        <div className="bg-blue-dark p-4 rounded-lg shadow-lg text-white">
           <h2 className="text-gold-light_400 text-2xl font-bold">Users List</h2>
-          {usersList && console.log(usersList)}
-          <div className="mt-10 overflow-y-scroll h-[80vh] overflow-x-scroll text-[#5a5c69] mx-auto">
+
+          <div className="mt-6 overflow-y-scroll h-[60vh] overflow-x-scroll scrollbar-none text-[#5a5c69] mx-auto">
             <table className="bg-gray-100 text-gray-900 w-full">
-              <thead className="bg-gray-100 text-gray-900">
-                <tr className="bg-gray-300 text-sm">
+              <thead className="bg-gray-100 sticky top-0 text-gray-900">
+                <tr className="bg-blue-light text-white text-sm">
                   <th className="p-3"> select</th>
                   <th className="p-3"> row</th>
                   <th className="p-3 px-6">First Name</th>
@@ -42,7 +42,7 @@ const UserManagement = () => {
               <tbody className="bg-gray-100 text-[#5a5c69]">
                 {usersList.length ? (
                   usersList.map((user, index) => (
-                    <tr key={index} className="bg-gray-200 shadow-sm">
+                    <tr key={index} className="bg-link-water shadow-sm">
                       <td className="p-3 border border-gray-300 text-center ">
                         <input type="checkbox" />
                       </td>
@@ -69,7 +69,7 @@ const UserManagement = () => {
                       </td>
                       <td className="p-3 border border-gray-300 text-center ">
                         {user.isActive ? (
-                          <span className="text-green-600 font-semibold">
+                          <span className="text-green-600 font-medium">
                             Active
                           </span>
                         ) : (
@@ -87,7 +87,9 @@ const UserManagement = () => {
                       className="pt-10 border border-gray-300 pb-10 "
                     >
                       <div className="flex items-center justify-center w-full gap-3">
-                        <span className="text-blue-light text-lg">Fetching data ... </span>
+                        <span className="text-blue-light text-lg">
+                          Fetching data ...{" "}
+                        </span>
                         <CustomBeatLoader />
                       </div>
                     </td>

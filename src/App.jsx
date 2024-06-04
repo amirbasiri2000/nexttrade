@@ -11,6 +11,8 @@ import {
   TradersCommunity,
 } from "./pages";
 import UserProfile from "./pages/profile/userProfile";
+import { Toaster } from "react-hot-toast";
+import AllMemberShipRequest from "./pages/master/AllMemberShipRequest";
 
 function App() {
   return (
@@ -37,10 +39,15 @@ function App() {
             />
 
             <Route path="/user-profile" element={<UserProfile />} />
+            <Route
+              path="/traders-community/all-membership-request"
+              element={<AllMemberShipRequest />}
+            />
           </Routes>
         </main>
         <div />
       </div>
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 }

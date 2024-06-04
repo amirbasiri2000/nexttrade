@@ -10,6 +10,7 @@ import { getCookie, setCookie } from "../../utils/cookie";
 import { userDataAction } from "../../redux/features/userDataSlice";
 import CustomCircleLoader from "../../utils/loaders/CustomCircleLoader";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const params = useParams();
@@ -17,7 +18,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-
+  
   // redux
   const dispatch = useDispatch();
   const { userData, isLoading } = useSelector((state) => state.login);
@@ -25,10 +26,10 @@ const Login = () => {
   useEffect(() => {
     if (userData?.messageCode === 200) {
       dispatch(userDataAction({ axiosPrivate }));
-      setCookie("loginToken", userData, 10);
+      setCookie("loginToken", userData?.messageData, 10);
       navigate("/");
     }
-    console.log(userData);
+    console.log({userData});
   }, [userData]);
 
   // formik init
@@ -44,7 +45,7 @@ const Login = () => {
     },
     validationSchema: loginValidation,
     onSubmit: (values) => {
-      dispatch(loginAction({ values }));
+      dispatch(loginAction({ values, toast }));
     },
   });
   return (

@@ -3,5 +3,5 @@ export { default as Login } from "./login/Login";
 export { default as Register } from "./register/Register";
 export { default as TradersCommunity } from "./tradersCommunity/Community";
 export { default as CommunityGroups } from "./tradersCommunity/groups/Groups";
-export { default as CommunityGroup } from "./tradersCommunity/Group/Group";
+export { default as CommunityGroup } from "./tradersCommunity/groups/Group";
 export { default as CreateGroup } from "./tradersCommunity/groups/CreateGroup";

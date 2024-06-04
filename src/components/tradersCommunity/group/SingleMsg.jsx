@@ -3,7 +3,7 @@ import { CiStar } from "react-icons/ci";
 import { MdReply } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const Message = () => {
+const SingleMsg = () => {
   return (
     <div className="group cursor-pointer h-auto opacity-100 pr-5 relative flex flex-row items-center w-auto mb-3 p-0 max-w-full">
       <div className="max-w-[100%-75px] bg-[#e8e8e8] text-black rounded-[4px] text-left py-3 px-3">
@@ -32,4 +32,4 @@ const Message = () => {
   );
 };
 
-export default Message;
+export default SingleMsg;

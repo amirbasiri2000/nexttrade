@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
-const GroupCard = () => {
+const GroupCard = ({ title, grouptypename, coverimage, description }) => {
+  let subUrl = title.replace(/\s+/g, "-").toLowerCase();
   return (
-    <div className="bg-white rounded-lg w-[330px] h-[400px] mx-10 overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-all">
+    <div className="bg-white rounded-lg w-[330px] h-[400px] mx-10 overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-all">
       {/* card heading */}
       <div className="relative">
         <div className="absolute z-0 h-[90px] top-0 lef-0 w-full">
@@ -22,15 +23,17 @@ const GroupCard = () => {
           </Link>
         </div>
         <div className="flex flex-col justify-center items-center mt-6">
-          <h4 className="font-semibold cursor-pointer text-lg">
-            <Link to="">Amir basiri</Link>
+          <h4 className="font-semibold cursor-pointer text-lg w-[80%] text-center hover:text-blue-dark transition">
+            <Link to={`/traders-community/groups/${subUrl}`}>{title}</Link>
           </h4>
-          <span className="text-gray-400 mt-1 text-sm">Public Group</span>
+          <span className="text-gray-400 mt-1 text-sm">
+            {grouptypename} Group
+          </span>
         </div>
       </div>
- 
+
       {/* members thumb */}
-      <div className="flex justify-center my-8">
+      <div className="flex justify-center my-4">
         <ul className="flex items-center">
           <li>
             <Link to="">
@@ -72,7 +75,7 @@ const GroupCard = () => {
       </div>
 
       {/* author statistics */}
-      <div className="flex justify-center items-center text-center gap-2 mt-12 ">
+      <div className="flex justify-center items-center text-center gap-2 mt-8 ">
         <div className="flex flex-col leading-3 gap-1 border-r  pr-2 border-gray-300 ">
           <span>0</span>
           <span className="text-sm text-gray-400">Groups Posts</span>

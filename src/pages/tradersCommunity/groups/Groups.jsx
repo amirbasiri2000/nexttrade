@@ -9,10 +9,32 @@ import { CiSearch } from "react-icons/ci";
 import GroupCard from "../../../components/tradersCommunity/groups/GroupCard";
 import Footer from "../../../components/Footer";
 import GroupsPageBanner from "../../../components/tradersCommunity/groups/GroupsPageBanner";
+import { useDispatch, useSelector } from "react-redux";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import { getAllGroups } from "../../../redux/features/groupSlice";
+import { useEffect } from "react";
+import CustomCircleLoader from "../../../utils/loaders/CustomCircleLoader";
 
 const CommunityGroups = () => {
+  const dispatch = useDispatch();
+  const axiosPrivate = useAxiosPrivate();
+  const { createGroupStatus, isLoading, errorMsg, allGroups } = useSelector(
+    (state) => state.group
+  );
+
+  useEffect(() => {
+    dispatch(getAllGroups({ axiosPrivate }));
+  }, []);
   return (
     <>
+      {isLoading && (
+        <div className="w-full h-screen fixed inset-0 z-[1001] flex justify-center items-center">
+          <div className="w-full h-full absolute bg-black opacity-65"></div>
+          <div className="z-[1002]">
+            <CustomCircleLoader />
+          </div>
+        </div>
+      )}
       <div className="bg-link-water w-full min-h-screen h-auto">
         <CummunityNavbar />
         <div className="wrapper">
@@ -47,8 +69,8 @@ const CommunityGroups = () => {
           {/* groups items */}
           <div className="mt-20">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 gap-x-4">
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-                <GroupCard key={index} />
+              {allGroups?.map((item, index) => (
+                <GroupCard {...item} key={index} />
               ))}
             </div>
           </div>

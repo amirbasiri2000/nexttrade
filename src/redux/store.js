@@ -5,6 +5,7 @@ import registerReducer from "./features/registerSlice";
 import usersListReducer from "./features/admin/usersListSlice";
 import userDataReducer from "./features/userDataSlice";
 import userSendMessage from "./features/messages/sendMsgSlice";
+import groupReducer from "./features/groupSlice";
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     usersList: usersListReducer,
     user: userDataReducer,
     userSendMessage: userSendMessage,
+    group: groupReducer,
   },
 });
 

@@ -40,6 +40,15 @@ const CummunityNavbar = () => {
                   Support Portal
                 </Link>
               </li>
+
+              <li className="hover:text-gold-light_400 transition-colors text-sm">
+                <Link
+                  className="outline-none"
+                  to="/traders-community/all-membership-request"
+                >
+                  All Membership Request
+                </Link>
+              </li>
             </ul>
           </nav>
 
@@ -76,13 +85,18 @@ const CummunityNavbar = () => {
                     Amir Basiri
                   </span>
                 </div>
-                <div className="absolute top-[124%] z-30 left-1/2 -translate-x-1/2">
+                <div className="absolute top-[124%] z-[1000] left-1/2 -translate-x-1/2">
                   {showProfileDropDown && (
                     <div className="bg-white rounded-lg shadow-lg">
                       <ul className=" text-gray-500 font-semibold text-sm">
                         <li className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg border-b border-gray-300 ">
                           <CiUser size={20} />
                           <Link to="/user-profile">Profile</Link>
+                        </li>
+
+                        <li className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg border-b border-gray-300 ">
+                          <CiUser size={20} />
+                          <Link to="/admin">Admin </Link>
                         </li>
                         <li className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg border-b border-gray-300 ">
                           <LuUsers size={20} />

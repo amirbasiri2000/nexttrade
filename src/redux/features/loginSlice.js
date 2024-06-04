@@ -4,7 +4,7 @@ import { axiosInstance } from "../../axios/axiosInstance";
 
 export const loginAction = createAsyncThunk(
   "login/loginAction",
-  async ({ values }, { rejectWithValue }) => {
+  async ({ values, toast }, { rejectWithValue }) => {
     const authData = `${values.username}:${values.password}`;
     const authToken = btoa(authData);
 
@@ -40,6 +40,11 @@ export const loginAction = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log("login error", error);
+      if (error?.response?.status === 400) {
+        toast.error("Username or Password is incurrect!.");
+      } else if (error?.message) {
+        toast.error(error.message);
+      }
       rejectWithValue(error);
     }
   }
