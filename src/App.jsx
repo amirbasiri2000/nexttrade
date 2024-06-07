@@ -13,6 +13,7 @@ import {
 import UserProfile from "./pages/profile/userProfile";
 import { Toaster } from "react-hot-toast";
 import AllMemberShipRequest from "./pages/master/AllMemberShipRequest";
+import CreateSignalChannel from "./pages/tradersCommunity/signalChannals/CreateSignalChannel";
 
 function App() {
   return (
@@ -42,6 +43,11 @@ function App() {
             <Route
               path="/traders-community/all-membership-request"
               element={<AllMemberShipRequest />}
+            />
+
+            <Route
+              path="/traders-community/create-signal-channel"
+              element={<CreateSignalChannel />}
             />
           </Routes>
         </main>

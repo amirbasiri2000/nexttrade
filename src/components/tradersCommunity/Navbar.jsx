@@ -68,7 +68,7 @@ const CummunityNavbar = () => {
                   onClick={() => setShowProfileDropDown(!showProfileDropDown)}
                   className="flex items-center cursor-pointer"
                 >
-                  <div className="relative  w-[50px] h-[50px] rounded-full">
+                  <div className="relative  w-[50px] h-[50px] shrink-0 rounded-full">
                     <img
                       className="w-full h-full rounded-full border-2 p-[1px]"
                       src="/assets/bp-avatar.png"

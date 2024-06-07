@@ -1,7 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import { getUserGroups } from "../../redux/features/groupSlice";
+import { useEffect } from "react";
+import CustomCircleLoader from "../../utils/loaders/CustomCircleLoader";
 
-const MyGroups = ({ userGroups }) => {
+const MyGroups = () => {
+  const { createGroupStatus, isLoading, errorMsg, userGroups } = useSelector(
+    (state) => state.group
+  );
+  const dispatch = useDispatch();
+  const axiosPrivate = useAxiosPrivate();
+
+  useEffect(() => {
+    dispatch(getUserGroups({ axiosPrivate }));
+  }, []);
   return (
     <div>
       <div className="flex items-center flex-wrap gap-4 justify-between">
@@ -39,33 +52,42 @@ const MyGroups = ({ userGroups }) => {
       </div>
       <div>
         <h5 className="my-4 text-xl font-semibold text-gray-300">My Groups </h5>
-        <div className="flex flex-wrap gap-4">
-          {userGroups?.map((item, index) => (
-            <div
-              key={index}
-              className="bg-blue-light shadow-xl cursor-pointer hover:scale-105 w-[250px] transition-all  px-4 py-3 rounded-lg"
-            >
-              <h4 className="text-gold-light_400 text-center font-semibold text-xl">
-                {item?.title || "---"}
-              </h4>
-              <span className="flex justify-center py-3 text-sm text-gray-200">
-                {item?.grouptypename || "---"}
-              </span>
+        {isLoading ? (
+          <div className="w-full h-screen fixed inset-0 z-[1001] flex justify-center items-center">
+            <div className="w-full h-full absolute bg-black opacity-65"></div>
+            <div className="z-[1002]">
+              <CustomCircleLoader />
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-4">
+            {userGroups?.map((item, index) => (
+              <div
+                key={index}
+                className="bg-blue-light shadow-xl cursor-pointer hover:scale-105 w-[240px] transition-all  px-4 py-3 rounded-lg"
+              >
+                <h4 className="text-gold-light_400 text-center font-semibold text-xl">
+                  {item?.title || "---"}
+                </h4>
+                <span className="flex justify-center py-3 text-sm text-gray-200">
+                  {item?.grouptypename || "---"}
+                </span>
 
-              <div className="my-3 flex justify-center gap-4">
-                <div className="flex flex-col items-center">
-                  <span className="text-gray-100">0</span>
-                  <span className="text-gray-400 text-sm ">Members</span>
-                </div>
+                <div className="my-3 flex justify-center gap-4">
+                  <div className="flex flex-col items-center">
+                    <span className="text-gray-100">0</span>
+                    <span className="text-gray-400 text-sm ">Members</span>
+                  </div>
 
-                <div className="flex flex-col items-center">
-                  <span className="text-gray-100">10</span>
-                  <span className="text-gray-400 text-sm ">Posts</span>
+                  <div className="flex flex-col items-center">
+                    <span className="text-gray-100">10</span>
+                    <span className="text-gray-400 text-sm ">Posts</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

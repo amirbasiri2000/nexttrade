@@ -1,38 +1,27 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar";
-import { AiOutlineDashboard } from "react-icons/ai";
 import Dashboard from "../../components/profile/Dashboard";
 import MyGroups from "../../components/profile/MyGroups";
 import MyProfile from "../../components/profile/MyProfile";
 import EnrolledCourses from "../../components/profile/EnrolledCourses";
-import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserGroups } from "../../redux/features/groupSlice";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import CustomCircleLoader from "../../utils/loaders/CustomCircleLoader";
+import MySignals from "../../components/profile/MySignals";
+import { GrGroup } from "react-icons/gr";
+import { CgProfile } from "react-icons/cg";
+import { FaGraduationCap } from "react-icons/fa";
+import { RiShoppingCart2Fill } from "react-icons/ri";
+import { IoMdSettings } from "react-icons/io";
+import { LuLogOut } from "react-icons/lu";
+import { FaChartLine } from "react-icons/fa6";
+import { MdDashboard } from "react-icons/md";
 
 const UserProfile = () => {
-  const { createGroupStatus, isLoading, errorMsg, userGroups } = useSelector(
-    (state) => state.group
-  );
-  const dispatch = useDispatch();
-  const axiosPrivate = useAxiosPrivate();
-
-  useEffect(() => {
-    dispatch(getUserGroups({ axiosPrivate }));
-  }, []);
-
   const [activeTab, setActiveTab] = useState("dashboard");
+
+  const changeTabHandler = (tab) => {
+    setActiveTab(tab);
+  };
   return (
     <>
-      {isLoading && (
-        <div className="w-full h-screen fixed inset-0 z-[1001] flex justify-center items-center">
-          <div className="w-full h-full absolute bg-black opacity-65"></div>
-          <div className="z-[1002]">
-            <CustomCircleLoader />
-          </div>
-        </div>
-      )}
       <div className="bg-blue-dark w-full min-h-screen pb-20">
         <Navbar />
 
@@ -52,40 +41,57 @@ const UserProfile = () => {
 
           <div className="flex">
             <div className="md:flex-[2] lg:flex-[1]">
-              <ul className="">
+              <ul className="text-sm">
                 <li
-                  onClick={() => setActiveTab("dashboard")}
-                  className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
+                  onClick={() => changeTabHandler("dashboard")}
+                  className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
+                    activeTab === "dashboard" ? "bg-gold-light_400" : null
+                  }`}
                 >
-                  <AiOutlineDashboard size={20} />
-                  <Link to="/#dashboard">Dashboard</Link>
+                  <MdDashboard size={20} />
+                  Dashboard
+                </li>
+                <li
+                  onClick={() => changeTabHandler("myProfile")}
+                  className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
+                    activeTab === "myProfile" ? "bg-gold-light_400" : null
+                  }`}
+                >
+                  <CgProfile size={20} />
+                  My Profile
                 </li>
                 <li
                   onClick={() => setActiveTab("myGroups")}
-                  className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
+                  className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
+                    activeTab === "myGroups" ? "bg-gold-light_400" : null
+                  }`}
                 >
-                  <AiOutlineDashboard size={20} />
+                  <GrGroup size={20} />
                   My Groups
                 </li>
+
                 <li
-                  onClick={() => setActiveTab("myProfile")}
-                  className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
+                  onClick={() => setActiveTab("mySignals")}
+                  className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
+                    activeTab === "mySignals" ? "bg-gold-light_400" : null
+                  }`}
                 >
-                  <AiOutlineDashboard size={20} />
-                  My Profile
+                  <FaChartLine size={20} />
+                  My Signals
                 </li>
+
                 <li
                   onClick={() => setActiveTab("enrolledCourses")}
                   className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
                 >
-                  <AiOutlineDashboard size={20} />
+                  <FaGraduationCap size={20} />
                   Enrolled Courses
                 </li>
                 <li
                   onClick={() => setActiveTab("orderHistory")}
                   className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
                 >
-                  <AiOutlineDashboard size={20} />
+                  <RiShoppingCart2Fill size={20} />
                   Order History
                 </li>
               </ul>
@@ -95,14 +101,14 @@ const UserProfile = () => {
                   onClick={() => setActiveTab("settings")}
                   className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
                 >
-                  <AiOutlineDashboard size={20} />
+                  <IoMdSettings size={20} />
                   Settings
                 </li>
                 <li
                   onClick={() => setActiveTab("logOut")}
                   className="flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg"
                 >
-                  <AiOutlineDashboard size={20} />
+                  <LuLogOut size={20} />
                   Logout
                 </li>
               </ul>
@@ -111,11 +117,13 @@ const UserProfile = () => {
               {activeTab === "dashboard" ? (
                 <Dashboard />
               ) : activeTab === "myGroups" ? (
-                <MyGroups userGroups={userGroups} />
+                <MyGroups />
               ) : activeTab === "myProfile" ? (
                 <MyProfile />
               ) : activeTab === "enrolledCourses" ? (
                 <EnrolledCourses />
+              ) : activeTab === "mySignals" ? (
+                <MySignals />
               ) : null}
             </div>
           </div>

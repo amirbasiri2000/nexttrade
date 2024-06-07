@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const GroupCard = ({ title, grouptypename, coverimage, description }) => {
   let subUrl = title.replace(/\s+/g, "-").toLowerCase();
   return (
-    <div className="bg-white rounded-lg w-[330px] h-[400px] mx-10 overflow-hidden shadow-lg cursor-pointer hover:shadow-xl transition-all">
+    <div className="bg-white rounded-lg w-[330px] h-[380px]  overflow-x-hidden overflow-y-scroll scrollbar-none shadow-lg cursor-pointer hover:shadow-xl transition-all mx-auto">
       {/* card heading */}
       <div className="relative">
         <div className="absolute z-0 h-[90px] top-0 lef-0 w-full">
@@ -75,13 +75,13 @@ const GroupCard = ({ title, grouptypename, coverimage, description }) => {
       </div>
 
       {/* author statistics */}
-      <div className="flex justify-center items-center text-center gap-2 mt-8 ">
+      <div className="flex justify-center items-center text-center gap-2 mt-6 ">
         <div className="flex flex-col leading-3 gap-1 border-r  pr-2 border-gray-300 ">
-          <span>0</span>
+          <span className="text-sm text-gray-800">0</span>
           <span className="text-sm text-gray-400">Groups Posts</span>
         </div>
         <div className="flex flex-col leading-3 gap-1">
-          <span>1</span>
+          <span className="text-sm text-gray-800">1</span>
           <span className="text-sm text-gray-400">Members</span>
         </div>
       </div>

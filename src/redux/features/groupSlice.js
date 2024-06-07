@@ -52,7 +52,8 @@ export const getUserGroups = createAsyncThunk(
   async ({ axiosPrivate, toast }, { rejectWithValue }) => {
     try {
       const response = await axiosPrivate.post("/api/getusercommunitygroups", {
-        categoryid: 1,
+        categoryid: null,
+        owneruserid: null,
       });
 
       console.log({ response });
@@ -75,7 +76,7 @@ const groupSlice = createSlice({
     errorMsg: null,
     groupData: {},
     allGroups: [],
-    userGroups:[],
+    userGroups: [],
     createGroupStatus: "",
   },
   reducers: {},

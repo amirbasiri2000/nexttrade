@@ -310,7 +310,7 @@ const Navbar = () => {
                       }
                       className="flex items-center cursor-pointer"
                     >
-                      <div className="relative size-[40px] rounded-full">
+                      <div className="relative size-[40px] shrink-0 rounded-full">
                         <img
                           className="w-full h-full rounded-full border-2 p-[1px]"
                           src="/assets/bp-avatar.png"

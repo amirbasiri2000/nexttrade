@@ -3,7 +3,6 @@ import Footer from "../../components/Footer";
 import CummunityNavbar from "../../components/tradersCommunity/Navbar";
 import CustomBeatLoader from "../../utils/loaders/CustomBeatLoader";
 
-
 const AllMemberShipRequest = () => {
   const [reqeustsList, setRequestsList] = useState([]);
   const [isLoading, setIsloading] = useState(false);
@@ -41,7 +40,6 @@ const AllMemberShipRequest = () => {
           <thead className="bg-gray-100 text-gray-900">
             <tr className="text-sm text-white">
               <th className="p-3 bg-blue-dark border border-white">
-                {" "}
                 User Name
               </th>
               <th className="p-3 bg-blue-dark border border-white">

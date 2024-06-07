@@ -8,6 +8,7 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { createGroupAction } from "../../../redux/features/groupSlice";
 import CustomCircleLoader from "../../../utils/loaders/CustomCircleLoader";
 import toast from "react-hot-toast";
+import { userDataAction } from "../../../redux/features/userDataSlice";
 
 const CreateGroup = () => {
   const [title, setTitle] = useState("");
@@ -34,6 +35,7 @@ const CreateGroup = () => {
   );
   const navigate = useNavigate();
 
+
   const createGroupHandler = (e) => {
     e.preventDefault();
 
@@ -54,6 +56,10 @@ const CreateGroup = () => {
       );
     }
   };
+
+  useEffect(() => {
+    dispatch(userDataAction({axiosPrivate}));
+  }, [])
 
   return (
     <>
