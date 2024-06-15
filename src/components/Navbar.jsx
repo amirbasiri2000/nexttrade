@@ -11,16 +11,25 @@ import { useDispatch, useSelector } from "react-redux";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useEffect } from "react";
 import { userDataAction } from "../redux/features/userDataSlice";
+import GoogleTranslate from "./googleTranslate/GoogleTranslate";
 
 const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showProfileDropDown, setShowProfileDropDown] = useState(false);
 
- 
   let userData = getCookie("loginToken");
 
+  // const googleTranslateElementInit = () => {
+  //   new google.translate.TranslateElement(
+  //     { pageLanguage: "en" },
+  //     "google_translate_element"
+  //   );
+  // };
 
+  // useEffect(() => {
+  //   googleTranslateElementInit();
+  // }, []);
 
   const navigate = useNavigate();
 
@@ -300,7 +309,7 @@ const Navbar = () => {
 
             {/* __________________ */}
 
-            <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
+            <div className="flex flex-col lg:flex-row items-start lg:items-start space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
               {userData ? (
                 <div>
                   <div className="relative">
@@ -371,18 +380,19 @@ const Navbar = () => {
                 </>
               )}
 
-              <div className="">
-                <div
+              <div className="mt-4">
+                {/* <div
                   className="bg-gradient-to-b from-white via-bg-gray-100 to-white text-gold-light_400 px-2 py-2 cursor-pointer text-center ml-0 flex items-center space-x-1 w-max"
                   onClick={() => setShowLanguages(true)}
                 >
                   <img
                     className="w-6 h-5"
                     src="/assets/flags/en.png"
-                    alt="En"
+                    alt="En"  
                   />
                   <span className="font-semibold text-sm">English</span>
-                </div>
+                </div> */}
+                <GoogleTranslate />
               </div>
             </div>
           </div>

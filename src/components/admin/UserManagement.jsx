@@ -1,12 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { usersListAction } from "../../redux/features/admin/usersListSlice";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import { userDataAction } from "../../redux/features/userDataSlice";
 import CustomCircleLoader from "../../utils/loaders/CustomCircleLoader";
 import CustomBeatLoader from "../../utils/loaders/CustomBeatLoader";
+import { LiaEditSolid } from "react-icons/lia";
+import UserDetailModal from "./modals/UserDetailModal";
 
 const UserManagement = () => {
+  const [showUserDetail, setShowUserDetail] = useState(false);
+  const [userDetail, setUserDetail] = useState();
   const dispatch = useDispatch();
   const axiosPrivate = useAxiosPrivate();
 
@@ -37,8 +41,10 @@ const UserManagement = () => {
                   <th className="p-3"> User Type </th>
                   <th className="p-3"> National Code </th>
                   <th className="p-3"> Status </th>
+                  <th className="p-3"> More </th>
                 </tr>
               </thead>
+              {console.log(showUserDetail)}
               <tbody className="bg-gray-100 text-[#5a5c69]">
                 {usersList.length ? (
                   usersList.map((user, index) => (
@@ -76,6 +82,23 @@ const UserManagement = () => {
                           <span className="text-red-600 font-semibold">
                             In Active
                           </span>
+                        )}
+                      </td>
+
+                      <td
+                        onClick={() => {
+                          setShowUserDetail(true);
+                          setUserDetail(user);
+                        }}
+                        className="p-3 border border-gray-300 text-center "
+                      >
+                        <LiaEditSolid className="cursor-pointer" size={20} />
+                        {showUserDetail && (
+                          <UserDetailModal
+                            userDetail={userDetail}
+                            setShowUserDetail={setShowUserDetail}
+                            setUserDetail={setUserDetail}
+                          />
                         )}
                       </td>
                     </tr>

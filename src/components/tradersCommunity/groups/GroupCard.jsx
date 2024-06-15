@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const GroupCard = ({ title, grouptypename, coverimage, description }) => {
-  let subUrl = title.replace(/\s+/g, "-").toLowerCase();
+const GroupCard = ({ id, title, grouptypename, coverimage, description }) => {
+  let subUrl = title.replace(/\s+/g, "-").toLowerCase().trim();
   return (
     <div className="bg-white rounded-lg w-[330px] h-[380px]  overflow-x-hidden overflow-y-scroll scrollbar-none shadow-lg cursor-pointer hover:shadow-xl transition-all mx-auto">
       {/* card heading */}
@@ -24,7 +24,9 @@ const GroupCard = ({ title, grouptypename, coverimage, description }) => {
         </div>
         <div className="flex flex-col justify-center items-center mt-6">
           <h4 className="font-semibold cursor-pointer text-lg w-[80%] text-center hover:text-blue-dark transition">
-            <Link to={`/traders-community/groups/${subUrl}`}>{title}</Link>
+            <Link to={`/traders-community/groups/${id}`}>
+              {title}
+            </Link>
           </h4>
           <span className="text-gray-400 mt-1 text-sm">
             {grouptypename} Group

@@ -35,20 +35,6 @@ const CummunityNavbar = () => {
                   All Groups
                 </Link>
               </li>
-              <li className="hover:text-gold-light_400 transition-colors text-sm">
-                <Link className="outline-none" to="/">
-                  Support Portal
-                </Link>
-              </li>
-
-              <li className="hover:text-gold-light_400 transition-colors text-sm">
-                <Link
-                  className="outline-none"
-                  to="/traders-community/all-membership-request"
-                >
-                  All Membership Request
-                </Link>
-              </li>
             </ul>
           </nav>
 

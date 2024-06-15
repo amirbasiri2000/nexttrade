@@ -14,10 +14,17 @@ import UserProfile from "./pages/profile/userProfile";
 import { Toaster } from "react-hot-toast";
 import AllMemberShipRequest from "./pages/master/AllMemberShipRequest";
 import CreateSignalChannel from "./pages/tradersCommunity/signalChannals/CreateSignalChannel";
+import CreateSignal from "./pages/tradersCommunity/signalChannals/CreateSignal";
+import GoogleTranslate from "./components/googleTranslate/GoogleTranslate";
 
 function App() {
   return (
-    <div className="">
+    <div className="bg-blue-dark">
+      {/* <header className="text-center p-4 bg-white shadow-lg rounded-lg">
+        <h1 className="text-2xl font-bold">Welcome to my multilingual app</h1>
+        <p className="text-gray-600">This is a simple example</p>
+        
+      </header> */}
       <div className="max-w-[1500px] mx-auto flex flex-col min-h-screen  overflow-x-hidden">
         <main className="flex-1">
           <Routes>
@@ -31,7 +38,7 @@ function App() {
               element={<CommunityGroups />}
             />
             <Route
-              path="/traders-community/groups/:name"
+              path="/traders-community/groups/:id"
               element={<CommunityGroup />}
             />
             <Route
@@ -46,8 +53,13 @@ function App() {
             />
 
             <Route
-              path="/traders-community/create-signal-channel"
+              path="/traders-community/create-signal-channel/:id"
               element={<CreateSignalChannel />}
+            />
+
+            <Route
+              path="/traders-community/create-signal/:id"
+              element={<CreateSignal />}
             />
           </Routes>
         </main>

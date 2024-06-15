@@ -1,40 +1,16 @@
 import { useState } from "react";
-import Footer from "../../components/Footer";
-import CummunityNavbar from "../../components/tradersCommunity/Navbar";
-import CustomBeatLoader from "../../utils/loaders/CustomBeatLoader";
 
-const AllMemberShipRequest = () => {
+
+
+const Requests = () => {
+
   const [reqeustsList, setRequestsList] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [errorMsg, seterrorMsg] = useState(false);
+
   return (
-    <div>
-      <CummunityNavbar />
-
-      <section className="relative w-full h-[40vh]">
-        <img
-          className="w-full h-full absolute inset-0 -z-10"
-          src="/assets/slider-bg.png"
-          alt=""
-        />
-
-        <div className="z-50 flex justify-between items-center p-2 h-full">
-          <div className="flex justify-center w-full">
-            <h4 className="text-4xl text-white">All Membership Request</h4>
-          </div>
-
-          <div className="h-full w-full">
-            <img
-              className="size-full object-cover"
-              src="/assets/breadcrumb_img.png"
-              alt="breadcrumb"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* table */}
-
+    <div className="text-white">
+      <h3 className="text-white text-xl my-4 font-bold">Membership Requests</h3>
       <div className="mt-10 mb-10 overflow-y-scroll max-h-[40vh] max-w-[90vw] w-full overflow-x-scroll scrollbar-none mx-auto">
         <table className="bg-gray-100 text-gray-900 w-full">
           <thead className="bg-gray-100 text-gray-900">
@@ -131,10 +107,8 @@ const AllMemberShipRequest = () => {
           </tbody>
         </table>
       </div>
-
-      <Footer />
     </div>
   );
-};
+}
 
-export default AllMemberShipRequest;
+export default Requests;

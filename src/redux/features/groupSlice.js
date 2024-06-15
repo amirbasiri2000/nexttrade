@@ -69,6 +69,26 @@ export const getUserGroups = createAsyncThunk(
   }
 );
 
+export const reqeustToJoinTheGroupAction = createAsyncThunk(
+  "group/reqeustToJoinTheGroupAction",
+  async ({ axiosPrivate, data, toast }, { rejectWithValue }) => {
+    try {
+      const response = await axiosPrivate.post(
+        "/api/addcommunitygroupmember",
+        data
+      );
+
+      console.log({ response });
+    } catch (error) {
+      console.log("request to join the group", error);
+      if (error?.message) {
+        toast.error(error.message);
+      }
+      rejectWithValue(error);
+    }
+  }
+);
+
 const groupSlice = createSlice({
   name: "group",
   initialState: {
@@ -78,6 +98,7 @@ const groupSlice = createSlice({
     allGroups: [],
     userGroups: [],
     createGroupStatus: "",
+    requestToJoin:""
   },
   reducers: {},
   extraReducers: (builder) => {

@@ -13,9 +13,13 @@ import { IoMdSettings } from "react-icons/io";
 import { LuLogOut } from "react-icons/lu";
 import { FaChartLine } from "react-icons/fa6";
 import { MdDashboard } from "react-icons/md";
+import { ImEmbed } from "react-icons/im";
+
+import { Link } from "react-router-dom";
+import Requests from "../../components/profile/Requests";
 
 const UserProfile = () => {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activeTab, setActiveTab] = useState("myProfile");
 
   const changeTabHandler = (tab) => {
     setActiveTab(tab);
@@ -42,7 +46,7 @@ const UserProfile = () => {
           <div className="flex">
             <div className="md:flex-[2] lg:flex-[1]">
               <ul className="text-sm">
-                <li
+                {/* <li
                   onClick={() => changeTabHandler("dashboard")}
                   className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
                     activeTab === "dashboard" ? "bg-gold-light_400" : null
@@ -50,7 +54,7 @@ const UserProfile = () => {
                 >
                   <MdDashboard size={20} />
                   Dashboard
-                </li>
+                </li> */}
                 <li
                   onClick={() => changeTabHandler("myProfile")}
                   className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
@@ -69,6 +73,30 @@ const UserProfile = () => {
                   <GrGroup size={20} />
                   My Groups
                 </li>
+
+                <li
+                  onClick={() => setActiveTab("requests")}
+                  className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
+                    activeTab === "requests" ? "bg-gold-light_400" : null
+                  }`}
+                >
+                  <ImEmbed size={20} />
+                  Requests
+                </li>
+
+                {/* <li
+                  onClick={() => setActiveTab("myGroups")}
+                  className={`flex items-center gap-3 py-2 px-2 hover:bg-gold-light_400 cursor-pointer transition-all text-white rounded-tl-lg rounded-bl-lg ${
+                    activeTab === "myGroups" ? "bg-gold-light_400" : null
+                  }`}
+                >
+                  <Link
+                    className="outline-none"
+                    to="/traders-community/all-membership-request"
+                  >
+                    All Membership Request
+                  </Link>
+                </li> */}
 
                 <li
                   onClick={() => setActiveTab("mySignals")}
@@ -113,10 +141,8 @@ const UserProfile = () => {
                 </li>
               </ul>
             </div>
-            <div className="md:flex-[5] lg:flex-[5] border-l min-h-[50vh] p-4">
-              {activeTab === "dashboard" ? (
-                <Dashboard />
-              ) : activeTab === "myGroups" ? (
+            <div className="md:flex-[5] lg:flex-[5] border-l min-h-[60vh] p-4">
+              { activeTab === "myGroups" ? (
                 <MyGroups />
               ) : activeTab === "myProfile" ? (
                 <MyProfile />
@@ -124,6 +150,8 @@ const UserProfile = () => {
                 <EnrolledCourses />
               ) : activeTab === "mySignals" ? (
                 <MySignals />
+              ) : activeTab === "requests" ? (
+                <Requests />
               ) : null}
             </div>
           </div>

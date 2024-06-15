@@ -5,6 +5,57 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* scrollbar-thin scrollbar-thumb-rounded-lg scrollbar-thumb-gray-100  */
+
+body {
+  margin: 0 !important;
+  top: 0 !important;
+}
+.VIpgJd-ZVi9od-l4eHX-hSRGPd {
+  display: none !important;
+}
+
+span[style="white-space: nowrap"] {
+  display: none !important;
+}
+
+.test:not(:empty) {
+  display: none !important; /* This will hide the text within the div but keep its children displayed */
+}
+
+.test:not(:empty)::before {
+  content: none !important; /* This will hide the text ”Power” */
+}
+
+.test :nth-child(n + 2) {
+  display: none !important;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd skiptranslate {
+  display: none;
+}
+iframe {
+  display: none !important;
+}
+
+.goog-te-combo {
+  background: #bb914a;
+  /* color: #030c3b; */
+  color: #fff;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  margin-top: 4px;
+  padding: 2px 1px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.goog-te-combo ::-webkit-scrollbar {
+  width: 5px !important;
+}
+
 @layer components {
   .wrapper {
     @apply px-4 md:px-8 lg:px-12 xl:px-16;
@@ -24,6 +75,10 @@
 
   .label {
     @apply text-base font-medium my-1  text-gray-800;
+  }
+
+  .labelSpan {
+    @apply text-blue-light font-semibold;
   }
 }
 

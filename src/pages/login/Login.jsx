@@ -18,7 +18,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  
+
   // redux
   const dispatch = useDispatch();
   const { userData, isLoading } = useSelector((state) => state.login);
@@ -27,9 +27,11 @@ const Login = () => {
     if (userData?.messageCode === 200) {
       dispatch(userDataAction({ axiosPrivate }));
       setCookie("loginToken", userData?.messageData, 10);
+      
+      setCookie("user", userData);
       navigate("/");
     }
-    console.log({userData});
+    console.log({ userData });
   }, [userData]);
 
   // formik init
