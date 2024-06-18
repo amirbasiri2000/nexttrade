@@ -16,6 +16,9 @@ import AllMemberShipRequest from "./pages/master/AllMemberShipRequest";
 import CreateSignalChannel from "./pages/tradersCommunity/signalChannals/CreateSignalChannel";
 import CreateSignal from "./pages/tradersCommunity/signalChannals/CreateSignal";
 import GoogleTranslate from "./components/googleTranslate/GoogleTranslate";
+import SignalChannel from "./pages/tradersCommunity/signalChannals/SignalChannel";
+import GroupHome from "./components/tradersCommunity/group/home";
+import Messages from "./components/tradersCommunity/group/Messages";
 
 function App() {
   return (
@@ -37,30 +40,47 @@ function App() {
               path="/traders-community/groups"
               element={<CommunityGroups />}
             />
-            <Route
+            {/* <Route
               path="/traders-community/groups/:id"
               element={<CommunityGroup />}
-            />
+            /> */}
             <Route
               path="/traders-community/groups/create"
               element={<CreateGroup />}
             />
-
             <Route path="/user-profile" element={<UserProfile />} />
             <Route
               path="/traders-community/all-membership-request"
               element={<AllMemberShipRequest />}
             />
-
             <Route
               path="/traders-community/create-signal-channel/:id"
               element={<CreateSignalChannel />}
             />
-
             <Route
               path="/traders-community/create-signal/:id"
               element={<CreateSignal />}
             />
+            <Route element={<CommunityGroup />}>
+              {/* HOME */}
+              <Route
+                path="/traders-community/groups/:name"
+                element={<GroupHome />}
+              />
+
+              {/* MESSAGES */}
+              <Route
+                path="/traders-community/groups/:name/messages"
+                element={<Messages />}
+              />
+
+              {/* SIGNAL CHANNEL */}
+              <Route
+                path="/traders-community/groups/:name/signal-channels"
+                element={<SignalChannel />}
+              />
+            </Route>
+            {/* Messages */}
           </Routes>
         </main>
         <div />

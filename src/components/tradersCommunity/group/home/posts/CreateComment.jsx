@@ -10,12 +10,12 @@ import * as Yup from "yup";
 import {
   createGroupPost,
   createPostComment,
-  getPostComments,
+  getPostComments,route
 } from "../../../../../redux/features/postSlice";
 import toast from "react-hot-toast";
 import CustomBeatLoader from "../../../../../utils/loaders/CustomBeatLoader";
 
-const CreateComment = ({ postId }) => {
+const CreateComment = ({ postId, communitygroupId }) => {
   const { id } = useParams();
 
   const [showCommentBox, setShowCommentBox] = useState(false);
@@ -40,7 +40,7 @@ const CreateComment = ({ postId }) => {
         data: {
           ...values,
           parentId: postId,
-          communitygroupId: id,
+          communitygroupId: communitygroupId,
           categoryid: 1,
         },
         resetForm,

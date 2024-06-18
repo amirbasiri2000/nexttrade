@@ -1,12 +1,15 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import CummunityNavbar from "../../../components/tradersCommunity/Navbar";
 import Messages from "../../../components/tradersCommunity/group/Messages";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignalChannel from "../signalChannals/SignalChannel";
 import MessagesAside from "../../../components/tradersCommunity/group/MessagesAside";
 import SignalChannelsAside from "../../../components/tradersCommunity/group/SigalChannelsAside";
 import { useDispatch, useSelector } from "react-redux";
-import { reqeustToJoinTheGroupAction } from "../../../redux/features/groupSlice";
+import {
+  getGroup,
+  reqeustToJoinTheGroupAction,
+} from "../../../redux/features/groupSlice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import toast from "react-hot-toast";
 import { getCookie } from "../../../utils/cookie";
@@ -17,31 +20,44 @@ const activeClass =
 
 const CommunityGroup = () => {
   const [activeTab, setActiveTab] = useState("home");
-
-  const { id } = useParams();
-
-  let user = getCookie("user");
-
-  console.log(user);
+  const [url, setUrl] = useState("");
 
   const dispatch = useDispatch();
   const axiosPrivate = useAxiosPrivate();
+
+  const { group, getGroupLoading, groupId } = useSelector(
+    (state) => state.group
+  );
 
   const requestToJoinTheGroupHandler = () => {
     dispatch(
       reqeustToJoinTheGroupAction({
         axiosPrivate,
         toast,
-        data: { communitygroupId: id },
+        data: { communitygroupId: groupId },
       })
     );
   };
 
+  useEffect(() => {
+    dispatch(getGroup({ axiosPrivate, id: groupId }));
+  }, [groupId]);
+
+  useEffect(() => {
+    let subUrl = group?.title
+      ?.trim()
+      ?.replace(/\s+/g, "-")
+      .toLowerCase()
+      .trim();
+
+    setUrl(`/traders-community/groups/${subUrl}`);
+  }, [group, groupId, getGroupLoading, group?.title]);
+
   return (
     <div className="bg-link-water  w-full min-h-screen h-full">
       <div className="w-full">
+        {console.log(groupId)}
         <CummunityNavbar />
-
         <div className=" w-full px-4 sm:max-w-xl md:max-w-3xl lg:max-w-4xl xl:max-w-6xl mx-auto">
           <div className="mt-10 w-full">
             {/* User Banner */}
@@ -69,7 +85,7 @@ const CommunityGroup = () => {
                 <div className="w-full">
                   <div className="leading-3">
                     <h3 className="text-base sm:text-lg md:text-2xl font-bold capitalize">
-                      o'zbekiston savdogarlari guruhi
+                      {group?.title || "Group Name"}
                     </h3>
                     <span className="text-sm text-gray-400 ">NextBit</span>
                   </div>
@@ -86,7 +102,7 @@ const CommunityGroup = () => {
                           Group Type :
                         </span>
                         <span className="text-xs w-max md:text-sm font-medium">
-                          Public group
+                          {group?.grouptypename} group
                         </span>
                       </div>
                       <div className="flex items-center gap-1">
@@ -94,7 +110,7 @@ const CommunityGroup = () => {
                           Members :
                         </span>
                         <span className="text-xs md:text-sm w-max font-medium">
-                          6
+                          {group?.membercount || "---"}
                         </span>
                       </div>
                     </div>
@@ -115,7 +131,7 @@ const CommunityGroup = () => {
                           activeTab === "home" ? activeClass : ""
                         }`}
                       >
-                        Home
+                        <Link to={`${url}`}>Home</Link>
                       </li>
                       <li className="cursor-pointer hover:text-gray-900 transition-all">
                         Gallery
@@ -126,7 +142,7 @@ const CommunityGroup = () => {
                           activeTab === "messages" ? activeClass : ""
                         }`}
                       >
-                        Messages
+                        <Link to={`${url}/messages`}>Messages</Link>
                       </li>
                       <li
                         className={`cursor-pointer hover:text-gray-900 transition-all ${
@@ -141,7 +157,9 @@ const CommunityGroup = () => {
                           activeTab === "signalChannels" ? activeClass : ""
                         }`}
                       >
-                        Signal Channels
+                        <Link to={`${url}/signal-channels`}>
+                          Signal Channels
+                        </Link>
                       </li>
                       <li className="cursor-pointer hover:text-gray-900 transition-all">
                         Signals
@@ -152,15 +170,7 @@ const CommunityGroup = () => {
                     </ul>
                   </div>
 
-                  {/* Messages */}
-
-                  {activeTab === "home" ? (
-                    <GroupHome id={id} />
-                  ) : activeTab === "messages" ? (
-                    <Messages />
-                  ) : activeTab === "signalChannels" ? (
-                    <SignalChannel id={id} />
-                  ) : null}
+                  <Outlet />
                 </section>
 
                 {/* right section */}
@@ -171,7 +181,7 @@ const CommunityGroup = () => {
                     ) : activeTab === "messages" ? (
                       <MessagesAside />
                     ) : activeTab === "signalChannels" ? (
-                      <SignalChannelsAside id={id} />
+                      <SignalChannelsAside id={groupId} />
                     ) : null}
                   </aside>
                 </section>

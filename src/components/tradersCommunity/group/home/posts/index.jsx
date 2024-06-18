@@ -19,6 +19,7 @@ const Posts = ({ id }) => {
         axiosPrivate,
         data: {
           communitygroupid: id,
+          parentId: null,
         },
       })
     );

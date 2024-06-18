@@ -7,31 +7,15 @@ import { MdReply } from "react-icons/md";
 import { RiAttachment2 } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { sendMsgAction } from "../../../redux/features/messages/sendMsgSlice";
 
 const SignalChannel = ({ id }) => {
-  const [userMsg, setUserMsg] = useState("");
-
   const dispatch = useDispatch();
   const axiosPrivate = useAxiosPrivate();
 
-  const sendMsgHandler = () => {
-    dispatch(
-      sendMsgAction({
-        axiosPrivate,
-        data: {
-          parentId: null,
-          categoryid: 1,
-          subcategoryid: 2,
-          subcategorygroupid: 2,
-          title: "title",
-          messagebody: userMsg,
-        },
-      })
-    );
-  };
+  const { signalChannelId, signals } = useSelector((state) => state.addSignal);
 
   return (
     <div className="mt-10 bg-white rounded-sm shadow-sm">
@@ -123,118 +107,53 @@ const SignalChannel = ({ id }) => {
 
                             {/* user messages */}
                             <ul className="m-0 p-0">
-                              <div className="group cursor-pointer h-auto opacity-100 pr-5 relative flex flex-row items-center w-auto mb-3 p-0 max-w-full">
-                                <div className="max-w-[100%-75px] bg-[#e8e8e8] text-black rounded-[4px] text-left py-3 px-3">
-                                  <span className="bg-blue-secondary rounded-[4px] p-[6px]">
-                                    <Link to="#">Trading Signal</Link>
-                                  </span>
-                                  <span className="ml-2">
-                                    <span className="text-[10px] whitespace-nowrap">
-                                      10:51
+                              {signals?.length ? (
+                                <div className="group cursor-pointer h-auto opacity-100 pr-5 relative flex flex-row items-center w-auto mb-3 p-0 max-w-full">
+                                  <div className="max-w-[100%-75px] bg-[#e8e8e8] text-black rounded-[4px] text-left py-3 px-3">
+                                    <span className="bg-blue-secondary rounded-[4px] p-[6px]">
+                                      <Link to="#">Trading Signal</Link>
+                                    </span>
+                                    <span className="ml-2">
+                                      <span className="text-[10px] whitespace-nowrap">
+                                        10:51
+                                      </span>
+                                    </span>
+                                    <div></div>
+                                  </div>
+
+                                  {/*  */}
+                                  <span className="hidden transition group-hover:flex items-center space-x-2 ml-1 text-sm">
+                                    <span className="cursor-pointer">
+                                      <CiStar
+                                        className="text-[#fdae00]"
+                                        size={15}
+                                      />
+                                    </span>
+                                    <span className="cursor-pointer">
+                                      <MdReply
+                                        className="text-[#808080]"
+                                        size={13}
+                                      />
+                                    </span>
+                                    <span className="cursor-pointer">
+                                      <IoEllipsisVerticalSharp
+                                        size={13}
+                                        className="text-[#808080]"
+                                      />
                                     </span>
                                   </span>
-                                  <div></div>
                                 </div>
-
-                                {/*  */}
-                                <span className="hidden transition group-hover:flex items-center space-x-2 ml-1 text-sm">
-                                  <span className="cursor-pointer">
-                                    <CiStar
-                                      className="text-[#fdae00]"
-                                      size={15}
-                                    />
-                                  </span>
-                                  <span className="cursor-pointer">
-                                    <MdReply
-                                      className="text-[#808080]"
-                                      size={13}
-                                    />
-                                  </span>
-                                  <span className="cursor-pointer">
-                                    <IoEllipsisVerticalSharp
-                                      size={13}
-                                      className="text-[#808080]"
-                                    />
-                                  </span>
-                                </span>
-                              </div>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/*  */}
-                      <div className="w-full">
-                        <div
-                          aria-label="Wednesday, May 29, 2024"
-                          className="bg-black cursor-default rounded-sm py-[3px] px-[7px] opacity-85 inline-block text-xs mx-auto my-3 text-white"
-                        >
-                          May 29
-                        </div>
-
-                        <div className="mb-4 text-left box-border">
-                          {/* user pic */}
-                          <div className="sticky top-3  left-4 w-9 h-9 z-10 block">
-                            <span>
-                              <Link to="#">
-                                <img
-                                  className="w-full h-full"
-                                  src="/assets/bp-avatar.png"
-                                  alt="user name"
-                                />
-                              </Link>
-                            </span>
-                          </div>
-
-                          {/* user content */}
-                          <div className="pl-16 -mt-9">
-                            {/* user info */}
-                            <div className="flex items-center mb-1">
-                              <div className="font-bold mr-1 flex items-center">
-                                <Link to="#">Amirbasiri</Link>
-                                <span>
-                                  <HiMiniCheckBadge size={15} />
-                                </span>
-                              </div>
-                            </div>
-
-                            {/* user messages */}
-                            <ul className="m-0 p-0">
-                              <div className="group cursor-pointer h-auto opacity-100 pr-5 relative flex flex-row items-center w-auto mb-3 p-0 max-w-full">
-                                <div className="max-w-[100%-75px] bg-[#e8e8e8] text-black rounded-[4px] text-left py-3 px-3">
-                                  <span className="bg-blue-secondary rounded-[4px] p-[6px]">
-                                    <Link to="#">Trading Signal</Link>
-                                  </span>
-                                  <span className="ml-2">
-                                    <span className="text-[10px] whitespace-nowrap">
-                                      10:51
-                                    </span>
-                                  </span>
-                                  <div></div>
+                              ) : (
+                                <div className="my-10 flex justify-center items-center gap-2 text-gray-500">
+                                  NO SIGNALS YET.
+                                  <Link
+                                    to={`/traders-community/create-signal/${id}`}
+                                    className="text-blue-main underline font-semibold"
+                                  >
+                                    Create New Signal
+                                  </Link>
                                 </div>
-
-                                {/*  */}
-                                <span className="hidden transition group-hover:flex items-center space-x-2 ml-1 text-sm">
-                                  <span className="cursor-pointer">
-                                    <CiStar
-                                      className="text-[#fdae00]"
-                                      size={15}
-                                    />
-                                  </span>
-                                  <span className="cursor-pointer">
-                                    <MdReply
-                                      className="text-[#808080]"
-                                      size={13}
-                                    />
-                                  </span>
-                                  <span className="cursor-pointer">
-                                    <IoEllipsisVerticalSharp
-                                      size={13}
-                                      className="text-[#808080]"
-                                    />
-                                  </span>
-                                </span>
-                              </div>
+                              )}
                             </ul>
                           </div>
                         </div>

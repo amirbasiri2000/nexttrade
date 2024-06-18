@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { getGroupSignalChannels } from "../../../redux/features/signals/signalChannelsSlice";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import { useEffect } from "react";
+import {
+  getSignals,
+  setSignalChannelId,
+} from "../../../redux/features/signals/SignalSlice";
 
 const SignalChannelsAside = ({ id }) => {
   const dispatch = useDispatch();
@@ -28,6 +32,15 @@ const SignalChannelsAside = ({ id }) => {
     };
     return new Intl.DateTimeFormat("en-US", options).format(
       new Date(dateString)
+    );
+  };
+
+  const showSignalChannelHandler = (signalChannel) => {
+    dispatch(
+      getSignals({
+        axiosPrivate,
+        data: { signalchannelId: signalChannel.id, id: null },
+      })
     );
   };
   return (
@@ -62,21 +75,22 @@ const SignalChannelsAside = ({ id }) => {
       <ul className="flex flex-col gap-6 mt-6 pb-6">
         {signalChannels.length ? (
           signalChannels.map((item, index) => (
-            <li key={index} className="flex items-center gap-3">
-              <Link to="#">
+            <li
+              onClick={() => showSignalChannelHandler(item)}
+              key={index}
+              className="flex items-center gap-3 cursor-pointer"
+            >
+              <div>
                 <img
                   className="rounded-full shrink-0 size-[50px] border-2 border-white shadow-sm p-[1px] object-fill"
                   src="/assets/community/mystery-group-50 .png"
                   alt="Group Avatar"
                 />
-              </Link>
+              </div>
               <div className="flex flex-col">
-                <Link
-                  className="text-gray-600 text-base hover:text-gray-800 transition-all font-medium"
-                  to="#"
-                >
+                <div className="text-gray-600 text-base hover:text-gray-800 transition-all font-medium">
                   {item?.title}
-                </Link>
+                </div>
                 <span className="text-xs text-gray-500">
                   {formatDate(item?.createdatetime)}
                 </span>

@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const addSignalAction = createAsyncThunk(
   "signal/addSignalAction",
@@ -7,7 +8,6 @@ export const addSignalAction = createAsyncThunk(
       const response = await axiosPrivate.post("/api/signal/addsignal", data);
 
       console.log({ response });
-      console.log(id);
       // if (response?.status === 200) {
       //   toast.success("Signal is created successfully");
       //   // navigate(`/traders-community/groups/${id}`);
@@ -18,6 +18,30 @@ export const addSignalAction = createAsyncThunk(
       console.log("create signal channel error", error);
       if (error?.message) {
         toast.error(error.message);
+      }
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const getSignals = createAsyncThunk(
+  "signal/getSignals",
+  async ({ axiosPrivate, data }, { rejectWithValue }) => {
+    try {
+      console.log(data);
+
+      const response = await axiosPrivate.post(
+        "/api/signal/getsignal",
+        JSON.stringify(data)
+      );
+
+      console.log("signals", { response });
+
+      return response.data;
+    } catch (error) {
+      console.log("getsignals error", error);
+      if (error?.message) {
+        toast.error(error?.message);
       }
       rejectWithValue(error);
     }
@@ -128,7 +152,7 @@ export const postSignalImage = createAsyncThunk(
         IFormFile
       );
 
-      console.log("entry point", { response });
+      console.log("upload signal file", { response });
 
       return response.data;
     } catch (error) {
@@ -141,6 +165,45 @@ export const postSignalImage = createAsyncThunk(
   }
 );
 
+// export const postSignalImage = createAsyncThunk(
+//   "signal/postSignalImage",
+//   async ({ axiosPrivate, IFormFile, Id, signalFile, toast }) => {
+
+//     console.log({ Id });
+//     console.log({ signalFile });
+//     try {
+//       let data = new FormData();
+//        // Assuming Id is a string received from the previous API call
+//       data.append("IFormFile", signalFile);
+//       // Replace with actual API call
+//       console.log({ data });
+//       let config = {
+//         method: "post",
+//         maxBodyLength: Infinity,
+//         url: "https://api.yasakashi.ir/api/signal/uploadsignalimage",
+//         headers: {
+//           Authorization:
+//             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ5YXNhIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6IjEiLCJqdGkiOiI4NjFhNjBhMC1hZTM0LTQyMGItYTNhYS0wMWQ4MmIwMzE3ZDQiLCJ1aWQiOiI1Yzc5ZDAwZC05MGZhLTQ3MGYtZDc2Mi0wOGRjN2NiNzZiNjciLCJleHAiOjE3MzIxOTI2NDAsImlzcyI6Ik1pdHJhIiwiYXVkIjoiTmV4dFRyYWRlQVBJcyJ9.QOzJJZsWOwMnrhgmmjOMU0ZkdN0JC3HHyUcUea5s5sM",
+//         },
+//         data: data,
+//       };
+//       console.log({ data });
+//       const response = await axios.request(config);
+//       //   await axios.post(
+//       //   "/api/signal/uploadsignalimage",
+//       //   formData,
+//       //   config
+//       // );
+
+//       console.log("postsignalImage", { response });
+//       return response.data; // Assuming response contains relevant data
+//     } catch (error) {
+//       console.error("Error uploading signal image", error);
+//       throw new Error(error.message); // Throw error to be caught in component
+//     }
+//   }
+// );
+
 const signalSlice = createSlice({
   name: "signal",
   initialState: {
@@ -152,8 +215,15 @@ const signalSlice = createSlice({
     marketCycles: [],
     instruments: [],
     entryPoints: [],
+    signalChannelId: "",
+    signalsLoading: false,
+    signals: [],
   },
-  reducers: {},
+  reducers: {
+    setSignalChannelId: (state, action) => {
+      state.signalChannelId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
 
@@ -241,8 +311,24 @@ const signalSlice = createSlice({
       .addCase(getEntryPoint.rejected, (state, action) => {
         state.isLoading = false;
         console.log({ action });
+      })
+
+      // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^6666
+      .addCase(getSignals.pending, (state, action) => {
+        state.isLoading = true;
+        state.errorMsg = null;
+      })
+      .addCase(getSignals.fulfilled, (state, action) => {
+        state.isLoading = false;
+        console.log({ action });
+        state.signals = action.payload?.messageData;
+      })
+      .addCase(getSignals.rejected, (state, action) => {
+        state.isLoading = false;
+        console.log({ action });
       });
   },
 });
 
+export const { setSignalChannelId } = signalSlice.actions;
 export default signalSlice.reducer;

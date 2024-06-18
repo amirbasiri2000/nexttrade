@@ -17,6 +17,7 @@ import {
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { IoIosClose } from "react-icons/io";
+import axios from "axios";
 
 const Checkbox = ({ field, form, label, ...props }) => {
   return (
@@ -40,6 +41,11 @@ const CreateSignal = () => {
   const [images, setImages] = useState([]);
   const [errorMsg, setErrorMsg] = useState("");
   const [signalFile, setSignalFile] = useState(null);
+  const [formData, setFormData] = useState({
+    id: "",
+    signalImageFile: null,
+  });
+
   const channelId = "e175bae6-d1a1-4822-8104-f13270c47094";
   const addSignalSchema = Yup.object().shape({
     entrypointtypeId: Yup.string().required("Required"),
@@ -120,8 +126,67 @@ const CreateSignal = () => {
     setImages([...files]);
   };
 
-  const handleSignalImage = (e) => {};
+  const handleSignalImage = (e) => {
+    setSignalFile(e.target.files[0]);
 
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImages([...images, reader.result]);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
+
+    // console.log({ signalFile });
+  };
+
+  // //////////////////////////////
+
+  const handleSubmit = async (values) => {
+    console.log({ values });
+    try {
+      // Step 1: Add signal data
+      const addSignalResponse = await dispatch(
+        addSignalAction({
+          axiosPrivate,
+          data: { ...values, signalchannelId: channelId },
+          toast,
+        })
+      );
+      console.log({ addSignalResponse });
+      if (addSignalResponse?.payload?.messageCode === 200) {
+        // toast.success("Signal created successfully");
+
+        // Step 2: Upload signal image
+        const formData = await new FormData();
+        formData.append("Id", addSignalResponse?.payload?.messageData?.id); // Assuming id is returned in the payload
+        formData.append("IFormFile", signalFile);
+
+
+        console.log(formData);
+
+        const uploadImageResponse = await dispatch(
+          postSignalImage({
+            axiosPrivate,
+            IFormFile: formData,
+            toast,
+          })
+        );
+
+        console.log({ uploadImageResponse });
+
+        if (uploadImageResponse.payload) {
+          toast.success("Signal image uploaded successfully");
+          // Handle success actions if needed
+        }
+      }
+    } catch (error) {
+      console.error("Error creating signal", error);
+      if (error?.message) {
+        toast.error(error.message);
+      }
+    }
+  };
   return (
     <div>
       <CummunityNavbar />
@@ -151,16 +216,17 @@ const CreateSignal = () => {
           <Formik
             initialValues={addSignalInitialValues}
             validationSchema={addSignalSchema}
-            onSubmit={(values) => {
-              dispatch(
-                addSignalAction({
-                  axiosPrivate,
-                  data: { ...values, signalchannelId : channelId},
-                })
-              );
+            onSubmit={handleSubmit}
+            // onSubmit={(values) => {
+            //   dispatch(
+            //     addSignalAction({
+            //       axiosPrivate,
+            //       data: { ...values, signalchannelId: channelId },
+            //     })
+            //   );
 
-              console.log(values);
-            }}
+            //   console.log(values);
+            // }}
           >
             {({
               values,
@@ -376,7 +442,7 @@ const CreateSignal = () => {
                       name="entrypointtypeId"
                       className="w-full p-2 bg-gold-light_400 rounded-sm outline-none border-none"
                     >
-                      {entryPoints.length
+                      {entryPoints?.length
                         ? entryPoints.map((item, index) => (
                             <option key={index} value={item.id}>
                               {item.name}
@@ -559,21 +625,40 @@ const CreateSignal = () => {
                     upload image
                   </h3>
                   <div className="mb-4">
-                    <label
-                      htmlFor="uploadImage"
-                      className="w-full h-[200px] bg-white rounded-lg flex justify-center items-center shadow-lg text-xl text-gray-500 cursor-pointer"
-                    >
-                      Drop file here or Click to upload
-                    </label>
+                    {images?.length ? (
+                      <>
+                        {images.map((image, index) => (
+                          <div key={index} className="relative">
+                            <img
+                              src={image}
+                              alt={`upload-${index}`}
+                              className="w-20 h-20 object-cover rounded"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => removeImage(index)}
+                              className="absolute top-0 right-0 p-[1px] bg-gray-300 rounded-full"
+                            >
+                              <IoIosClose className="text-red-600" size={20} />
+                            </button>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <label
+                        htmlFor="uploadImage"
+                        className="w-full h-[200px] bg-white rounded-lg flex justify-center items-center shadow-lg text-xl text-gray-500 cursor-pointer"
+                      >
+                        Drop file here or Click to upload
+                      </label>
+                    )}
 
                     <input
                       type="file"
                       name="image"
                       id="uploadImage"
-                      onChange={(e) => {
-                        setSignalFile(e.target.files[0]);
-                      }}
-                      className="w-full p-2 rounded bg-white text-black"
+                      onChange={handleSignalImage}
+                      className="w-full hidden p-2 rounded bg-white text-black"
                       accept="image/png, image/gif, image/jpeg"
                     />
 
@@ -581,24 +666,7 @@ const CreateSignal = () => {
                       <div className="text-red-500 mt-1">{errorMsg}</div>
                     )}
 
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {images.map((image, index) => (
-                        <div key={index} className="relative">
-                          <img
-                            src={image}
-                            alt={`upload-${index}`}
-                            className="w-20 h-20 object-cover rounded"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => removeImage(index)}
-                            className="absolute top-0 right-0 p-[1px] bg-gray-300 rounded-full"
-                          >
-                            <IoIosClose className="text-red-600" size={20} />
-                          </button>
-                        </div>
-                      ))}
-                    </div>
+                    <div className="mt-4 flex flex-wrap gap-2"></div>
                   </div>
                 </div>
 

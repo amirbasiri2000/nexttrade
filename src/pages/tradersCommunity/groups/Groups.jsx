@@ -2,9 +2,6 @@ import { Link } from "react-router-dom";
 import CummunityNavbar from "../../../components/tradersCommunity/Navbar";
 
 import { RiArrowRightWideLine } from "react-icons/ri";
-import { RiArrowLeftWideFill } from "react-icons/ri";
-
-import { BsMegaphone } from "react-icons/bs";
 import { CiSearch } from "react-icons/ci";
 import GroupCard from "../../../components/tradersCommunity/groups/GroupCard";
 import Footer from "../../../components/Footer";
@@ -25,6 +22,8 @@ const CommunityGroups = () => {
   useEffect(() => {
     dispatch(getAllGroups({ axiosPrivate }));
   }, []);
+
+  
   return (
     <>
       {isLoading && (

@@ -22,7 +22,6 @@ export const createGroupPost = createAsyncThunk(
 export const createPostComment = createAsyncThunk(
   "post/createPostComment",
   async ({ axiosPrivate, data, toast, resetForm }, { rejectWithValue }) => {
-    console.log({data})
     try {
       const response = await axiosPrivate.post("/api/createforummessage", data);
 
@@ -57,12 +56,12 @@ export const getGroupPosts = createAsyncThunk(
 export const getPostComments = createAsyncThunk(
   "post/getPostComments",
   async ({ axiosPrivate, data }, { rejectWithValue }) => {
-    
+    console.log({ data });
     try {
       const response = await axiosPrivate.post("/api/getforummessage", data);
-
-      console.log("getcomments", { response });
-      return response.data;
+      return { parentId: data.parentId, comments: response.data.messageData };
+      // console.log("getcomments", { response });
+      // return response.data;
     } catch (error) {
       console.log("userlist error", error);
       rejectWithValue(error);
@@ -80,6 +79,7 @@ const groupPostSlice = createSlice({
     post: {},
     posts: [],
     postComment: {},
+    commentsByPostId: {},
     postComments: [],
     commentLoading: false,
     commentError: null,
@@ -110,7 +110,7 @@ const groupPostSlice = createSlice({
       .addCase(createGroupPost.fulfilled, (state, action) => {
         console.log({ action });
         state.creatPostLoading = false;
-        state.post = action?.payload?.messageData;
+        state.posts.unshift(action.payload.messageData);
         state.errorMsg = null;
       })
       .addCase(createGroupPost.rejected, (state, action) => {
@@ -126,7 +126,8 @@ const groupPostSlice = createSlice({
       .addCase(createPostComment.fulfilled, (state, action) => {
         console.log({ action });
         state.commentLoading = false;
-        state.postComment = action?.payload?.messageData;
+        const newComment = action.payload.messageData;
+        state.postComments.unshift(newComment);
         state.commentError = null;
       })
       .addCase(createPostComment.rejected, (state, action) => {
@@ -145,9 +146,9 @@ const groupPostSlice = createSlice({
         state.errorMsg = null;
       })
       .addCase(getPostComments.fulfilled, (state, action) => {
-        console.log({ action });
         state.postCommentsLoading = false;
-        state.postComments = action?.payload?.messageData;
+        const { parentId, comments } = action.payload;
+        state.commentsByPostId[parentId] = comments;
         state.errorMsg = null;
       })
       .addCase(getPostComments.rejected, (state, action) => {

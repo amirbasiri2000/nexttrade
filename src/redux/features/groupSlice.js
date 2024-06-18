@@ -69,6 +69,29 @@ export const getUserGroups = createAsyncThunk(
   }
 );
 
+export const getGroup = createAsyncThunk(
+  "group/getGroup",
+  async ({ axiosPrivate, toast, id }, { rejectWithValue }) => {
+    try {
+      const response = await axiosPrivate.post("/api/getusercommunitygroups", {
+        categoryid: null,
+        owneruserid: null,
+        id
+      });
+
+      console.log({ response });
+
+      return response.data;
+    } catch (error) {
+      console.log("uer groups error", error);
+      if (error?.message) {
+        toast.error(error.message);
+      }
+      rejectWithValue(error);
+    }
+  }
+);
+
 export const reqeustToJoinTheGroupAction = createAsyncThunk(
   "group/reqeustToJoinTheGroupAction",
   async ({ axiosPrivate, data, toast }, { rejectWithValue }) => {
@@ -98,9 +121,17 @@ const groupSlice = createSlice({
     allGroups: [],
     userGroups: [],
     createGroupStatus: "",
-    requestToJoin:""
+    requestToJoin: "",
+    getGroupLoading: false,
+    groupId: "",
+    group: {},
   },
-  reducers: {},
+  reducers: {
+    setGroupId: (state, action) => {
+      console.log({action})
+      state.groupId = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createGroupAction.pending, (state) => {
@@ -152,8 +183,25 @@ const groupSlice = createSlice({
         console.log({ action });
         state.isLoading = false;
         state.errorMsg = action.payload;
+      })
+
+      // ///////////////////////////
+      .addCase(getGroup.pending, (state) => {
+        state.getGroupLoading = true;
+        state.errorMsg = null;
+      })
+      .addCase(getGroup.fulfilled, (state, action) => {
+        console.log({ action });
+        state.getGroupLoading = false;
+        state.errorMsg = null;
+        state.group = action.payload?.messageData[0];
+      })
+      .addCase(getGroup.rejected, (state, action) => {
+        console.log({ action });
+        state.getGroupLoading = false;
+        state.errorMsg = action.payload;
       });
   },
 });
-
+export const { setGroupId } = groupSlice.actions;
 export default groupSlice.reducer;
