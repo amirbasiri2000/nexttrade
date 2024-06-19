@@ -1,15 +1,46 @@
 import React, { useRef, useState } from "react";
 import Languages from "../common/Languages";
 import useClickOutside from "../hooks/useClickOutside";
+import { deleteCookie, getCookie } from "../utils/cookie";
+import { Link, useNavigate } from "react-router-dom";
+import { FaCheck } from "react-icons/fa6";
+import { CiUser } from "react-icons/ci";
+import { LuUsers } from "react-icons/lu";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import { useEffect } from "react";
+import { userDataAction } from "../redux/features/userDataSlice";
+import GoogleTranslate from "./googleTranslate/GoogleTranslate";
 
 const Navbar = () => {
   const [showLanguages, setShowLanguages] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showProfileDropDown, setShowProfileDropDown] = useState(false);
 
-  
+  let userData = getCookie("loginToken");
+
+  // const googleTranslateElementInit = () => {
+  //   new google.translate.TranslateElement(
+  //     { pageLanguage: "en" },
+  //     "google_translate_element"
+  //   );
+  // };
+
+  // useEffect(() => {
+  //   googleTranslateElementInit();
+  // }, []);
+
+  const navigate = useNavigate();
+
+  const logOutHandler = () => {
+    deleteCookie("loginToken");
+
+    navigate("/");
+  };
 
   return (
-    <div className="w-full relative wrapper pt-2 lg:pt-2 bg-blue-light">
+    <div className="w-full z-[1000] relative wrapper pt-2 lg:pt-2 bg-blue-light">
       <div className="">
         <div className="flex items-center justify-between lg:justify-normal relative">
           <a href="/" className="max-w-[150px]">
@@ -17,7 +48,7 @@ const Navbar = () => {
           </a>
           {/* _________________________ */}
           <div
-            className={`absolute bg-blue-light lg:bg-inherit w-full py-4 lg:py-0 lg:relative top-full flex-col lg:flex-row flex lg:justify-end gap-2 z-50 h-[calc(100vh-130px)] lg:h-auto ${
+            className={`absolute bg-blue-light pl-8 pr-4 lg:bg-inherit w-full py-4 lg:py-0 lg:relative top-full flex-col lg:flex-row flex lg:justify-end gap-2 z-50 h-[calc(100vh-130px)] lg:h-auto ${
               showMobileMenu
                 ? "translate-x-0 duration-300"
                 : "-translate-x-[110%] lg:translate-x-0 duration-500 lg:flex"
@@ -270,59 +301,98 @@ const Navbar = () => {
               </div>
 
               <div className="text-white capitalize">
-                <a href="/">Traders Community</a>
+                <Link to="/traders-community">Traders Community</Link>
               </div>
 
               {/* ************* */}
             </div>
 
             {/* __________________ */}
-            <div className="flex flex-col lg:flex-row items-start lg:items-center space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
-              <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white rounded-3xl">
-                <button className="px-4 w-max text-sm py-2 text-gray-700">
-                  Log In
-                </button>
-              </div>
 
-              <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
-                <button className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max">
-                  <span className=" text-sm">Sign Up</span>
-                  <span>
-                    <svg
-                      className="fill-current h-5 w-5 transform group-hover:-rotate-180
-                        transition duration-150 ease-in-out"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+            <div className="flex flex-col lg:flex-row items-start lg:items-start space-x-0 space-y-4 lg:space-y-0 lg:space-x-3 ">
+              {userData ? (
+                <div>
+                  <div className="relative">
+                    <div
+                      onClick={() =>
+                        setShowProfileDropDown(!showProfileDropDown)
+                      }
+                      className="flex items-center cursor-pointer"
                     >
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </span>
-                </button>
-                <ul
-                  className="bg-gold-light_200 rounded-lg px-4 py-2 transform scale-0 group-hover:scale-100 absolute top-full -left-3 mt-1
-                transition duration-150 ease-in-out origin-top text-[14px] cursor-pointer w-max"
-                >
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm py-1 hover:text-white ">
-                    Join as STUDENT
-                  </li>
-                  <li className="text-blue-light border-b border-blue-light  pt-3 rounded-sm  py-2 hover:text-white">
-                    Join as INSTRUCTOR
-                  </li>
-                </ul>
-              </div>
+                      <div className="relative size-[40px] shrink-0 rounded-full">
+                        <img
+                          className="w-full h-full rounded-full border-2 p-[1px]"
+                          src="/assets/bp-avatar.png"
+                          alt="User"
+                        />
+                        <span className="text-white absolute -top-1 right-0">
+                          <FaCheck
+                            className="bg-green-500 rounded-full p-[2px]"
+                            size={20}
+                          />
+                        </span>
+                      </div>
+                      <span className="capitalize text-white ml-2 font-semibold">
+                        Amir Basiri
+                      </span>
+                    </div>
 
-              <div className="">
-                <div
+                    <div className="absolute top-[124%] z-[1000] left-1/2 -translate-x-1/2">
+                      {showProfileDropDown && (
+                        <div className="bg-white rounded-lg shadow-lg">
+                          <ul className=" text-gray-500 font-semibold text-sm">
+                            <li className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg border-b border-gray-300 ">
+                              <CiUser size={20} />
+                              <Link to="/user-profile">Profile</Link>
+                            </li>
+
+                            <li
+                              onClick={logOutHandler}
+                              className="flex items-center px-14 py-3 space-x-3 hover:bg-gray-200 rounded-lg w-max"
+                            >
+                              <RiLogoutCircleLine size={20} />
+                              <Link to="">Log Out</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="bg-gradient-to-b from-white via-bg-gray-100 to-white  py-2 rounded-3xl">
+                    <a
+                      href="/login"
+                      className="px-4 w-max text-sm  text-gray-700 font-semibold"
+                    >
+                      Log In
+                    </a>
+                  </div>
+                  <div className="group relative inline-block bg-gradient-to-b from-[#bb965f] via-[#f0d785] to-[#9c7049] rounded-3xl">
+                    <a
+                      href="/register"
+                      className="outline-none focus:outline-none  px-2 lg:px-4 py-2 flex items-center w-max"
+                    >
+                      Sign Up
+                    </a>
+                  </div>
+                </>
+              )}
+
+              <div className="mt-4">
+                {/* <div
                   className="bg-gradient-to-b from-white via-bg-gray-100 to-white text-gold-light_400 px-2 py-2 cursor-pointer text-center ml-0 flex items-center space-x-1 w-max"
                   onClick={() => setShowLanguages(true)}
                 >
                   <img
                     className="w-6 h-5"
                     src="/assets/flags/en.png"
-                    alt="En"
+                    alt="En"  
                   />
                   <span className="font-semibold text-sm">English</span>
-                </div>
+                </div> */}
+                <GoogleTranslate />
               </div>
             </div>
           </div>
@@ -350,11 +420,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {showLanguages && (
-        <Languages
-          setShowLanguages={setShowLanguages}
-        />
-      )}
+      {showLanguages && <Languages setShowLanguages={setShowLanguages} />}
     </div>
   );
 };

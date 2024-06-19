@@ -11,22 +11,29 @@ import LearnAny from "../components/home/learnany/LearnAny";
 import MoversAndShakers from "../components/home/moversandshakers/MoversAndShakers";
 import BodyFixedModal from "../common/BodyFixedModal";
 import CustomCalendaar from "../components/Calendar/CustomCalendar";
+import Footer from "../components/Footer";
 const Home = () => {
   return (
-    <div className="max-w-[1500px] mx-auto">
-      <BodyFixedModal />
-      
-      <Hero />
-      <Provisions />
-      <CustomCalendaar />
-      <PopularCourses />
-      <MarketPulse />
-      <MoversAndShakers />
-      <AnalystEstimates />
-      <LearnAny />
-      <TopCategories />
-      <BecomeAnInstructor />
-      <Testimonials />
+    <div className="bg-blue-dark w-full h-full">
+      <div className="w-full h-full">
+        <div className="max-w-[1500px] mx-auto">
+          <BodyFixedModal />
+
+          <Hero />
+          <Provisions />
+          <CustomCalendaar />
+          <PopularCourses />
+          <MarketPulse />
+          <MoversAndShakers />
+          <AnalystEstimates />
+          <LearnAny />
+          <TopCategories />
+          <BecomeAnInstructor />
+          <Testimonials />
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 };
